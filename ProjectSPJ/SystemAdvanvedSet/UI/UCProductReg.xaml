@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="ProjectSPJ.UCProductReg"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib"
+             xmlns:local="clr-namespace:ProjectSPJ"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="MaxHeight" Value="30"/>
+                <Setter Property="MaxWidth" Value="60"/>
+                <Setter Property="ItemsSource" Value="{Binding ParProductIndex_L}"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Right" ></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="产品X:"  Grid.Column="0" Grid.Row="0"/>
+            <ComboBox Grid.Column="1" Grid.Row="0"
+                  SelectedIndex="{Binding IndexGlassX, Mode=TwoWay}" ToolTip="{Binding AnnounceGlassX}"></ComboBox>
+
+            <Label Content="产品Y:" Grid.Column="0" Grid.Row="1"/>
+            <ComboBox Grid.Column="1"  Grid.Row="1"
+                  SelectedIndex="{Binding IndexGlassY, Mode=TwoWay}" ToolTip="{Binding AnnounceGlassY}"></ComboBox>
+
+            <Label Content="玻璃厚度:" Grid.Column="0" Grid.Row="2"/>
+            <ComboBox Grid.Column="1"  Grid.Row="2"
+                  SelectedIndex="{Binding IndexThickness, Mode=TwoWay}" ToolTip="{Binding AnnounceThickness}"></ComboBox>
+
+            <Label Content="二维码X:" Grid.Column="0" Grid.Row="3"/>
+            <ComboBox Grid.Column="1"  Grid.Row="3"
+                  SelectedIndex="{Binding IndexQrCodeX, Mode=TwoWay}" ToolTip="{Binding AnnounceQrCodeX}"></ComboBox>
+
+            <Label Content="二维码Y:" Grid.Column="0" Grid.Row="4"/>
+            <ComboBox Grid.Column="1"  Grid.Row="4"
+                  SelectedIndex="{Binding IndexQrCodeY, Mode=TwoWay}" ToolTip="{Binding AnnounceQrCodeY}" ></ComboBox>
+
+            <Label Content="Mark1X:" Grid.Column="0" Grid.Row="5"/>
+            <ComboBox Grid.Column="1"  Grid.Row="5"
+                  SelectedIndex="{Binding IndexMark1X, Mode=TwoWay}" ToolTip="{Binding AnnounceMark1X}"></ComboBox>
+
+            <Label Content="Mark1Y:" Grid.Column="0" Grid.Row="6"/>
+            <ComboBox Grid.Column="1"  Grid.Row="6"
+                  SelectedIndex="{Binding IndexMark1Y, Mode=TwoWay}" ToolTip="{Binding AnnounceMark1Y}"></ComboBox>
+
+            <Label Content="Mark2X:" Grid.Column="0" Grid.Row="7"/>
+            <ComboBox Grid.Column="1"  Grid.Row="7"
+                  SelectedIndex="{Binding IndexMark2X, Mode=TwoWay}" ToolTip="{Binding AnnounceMark2X}" ></ComboBox>
+
+            <Label Content="Mark2Y:" Grid.Column="0" Grid.Row="8"/>
+            <ComboBox Grid.Column="1"  Grid.Row="8"
+                  SelectedIndex="{Binding IndexMark2Y, Mode=TwoWay}" ToolTip="{Binding AnnounceMark2Y}"></ComboBox>
+
+            <Label Content="拖拽次数:" Grid.Column="2" Grid.Row="0"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="0"
+                  SelectedIndex="{Binding IndexPickStationNum, Mode=TwoWay}" ToolTip="{Binding AnnouncePickStationNum}"></ComboBox>
+
+            <Label Content="上电极宽度:" Grid.Column="2" Grid.Row="1"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="1"
+                  SelectedIndex="{Binding IndexTopE, Mode=TwoWay}" ToolTip="{Binding AnnounceTopE}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="下电极宽度:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="2"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="2"
+                  SelectedIndex="{Binding IndexBottomE, Mode=TwoWay}" ToolTip="{Binding AnnounceBottomE}"></ComboBox>
+
+            <Label Content="左电极宽度:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="3"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="3"
+                  SelectedIndex="{Binding IndexLeftE, Mode=TwoWay}" ToolTip="{Binding AnnounceLeftE}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="右电极宽度:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="4"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="4"
+                  SelectedIndex="{Binding IndexRightE, Mode=TwoWay}" ToolTip="{Binding AnnounceRightE}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="卡塞行数:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="5"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="5"
+                  SelectedIndex="{Binding IndexCSTRows, Mode=TwoWay}" ToolTip="{Binding AnnounceCSTRows}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="卡塞列数:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="6"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="6"
+                  SelectedIndex="{Binding IndexCSTCols, Mode=TwoWay}" ToolTip="{Binding AnnounceCSTCols}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="龙骨列间距:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="7"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="7"
+                  SelectedIndex="{Binding IndexCSTRows, Mode=TwoWay}" ToolTip="{Binding AnnounceCSTRows}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="龙骨层间距:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Margin="5" Grid.Row="8"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"  Grid.Row="8"
+                  SelectedIndex="{Binding IndexCSTCols, Mode=TwoWay}" ToolTip="{Binding AnnounceCSTCols}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="第一列龙骨间距:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="0"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="0"
+                  SelectedIndex="{Binding IndexDisCol1, Mode=TwoWay}" ToolTip="{Binding AnnounceDisCol1}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="插栏方向:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="1"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="1"
+                  SelectedIndex="{Binding IndexDirecInsert, Mode=TwoWay}" ToolTip="{Binding AnnounceDirecInsert}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="抛料方向:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="2"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="2"
+                  SelectedIndex="{Binding IndexDirecDump, Mode=TwoWay}" ToolTip="{Binding AnnounceDirecDump}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="中片玻璃数:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="3"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="3"
+                  SelectedIndex="{Binding IndexSumPick, Mode=TwoWay}" ToolTip="{Binding AnnounceSumPick}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="插栏深度:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="4"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="4"
+                  SelectedIndex="{Binding IndexInsertDepth, Mode=TwoWay}" ToolTip="{Binding AnnounceInsertDepth}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="卡塞高度:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="5"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="5"
+                  SelectedIndex="{Binding IndexCSTHeight, Mode=TwoWay}" ToolTip="{Binding AnnounceCSTHeight}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="大小卡塞:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="6"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="6"
+                  SelectedIndex="{Binding IndexCSTSize, Mode=TwoWay}" ToolTip="{Binding AnnounceCSTSize}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="龙骨深度:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="7"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="7"
+                  SelectedIndex="{Binding IndexKeelDepth, Mode=TwoWay}" ToolTip="{Binding AnnounceKeelDepth}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="插栏起始行:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="4" Margin="5" Grid.Row="8"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"  Grid.Row="8"
+                  SelectedIndex="{Binding IndexStartRow, Mode=TwoWay}" ToolTip="{Binding AnnounceStartRow}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="插栏起始列:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="0"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="0"
+                  SelectedIndex="{Binding IndexStartCol, Mode=TwoWay}" ToolTip="{Binding AnnounceStartCol}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="隔几行插栏:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="1"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="1"
+                  SelectedIndex="{Binding IndexStartRow, Mode=TwoWay}" ToolTip="{Binding AnnounceStartRow}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="残材平台工位号:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="2"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="2"
+                  SelectedIndex="{Binding IndexPlatStationNo, Mode=TwoWay}" ToolTip="{Binding AnnouncePlatStationNo}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="预留1:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="3"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="3"
+                  SelectedIndex="{Binding IndexReserve1, Mode=TwoWay}" ToolTip="{Binding AnnounceReserve1}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="预留2:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="4"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="4"
+                  SelectedIndex="{Binding IndexReserve2, Mode=TwoWay}" ToolTip="{Binding AnnounceReserve2}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="预留3:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="5"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="5"
+                  SelectedIndex="{Binding IndexReserve3, Mode=TwoWay}" ToolTip="{Binding AnnounceReserve3}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="预留4:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="6"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="6"
+                  SelectedIndex="{Binding IndexReserve4, Mode=TwoWay}" ToolTip="{Binding AnnounceReserve4}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="预留5:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="7"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="7"
+                  SelectedIndex="{Binding IndexReserve5, Mode=TwoWay}" ToolTip="{Binding AnnounceReserve5}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+            <Label Content="预留6:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="6" Margin="5" Grid.Row="8"/>
+            <ComboBox Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7"  Grid.Row="8"
+                  SelectedIndex="{Binding IndexReserve6, Mode=TwoWay}" ToolTip="{Binding AnnounceReserve6}" ItemsSource="{Binding ParProductIndex_L}"></ComboBox>
+
+
+        </Grid>
+        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="10" Grid.ColumnSpan="10" Content="保    存" Height="30" VerticalAlignment="Bottom"
+                               Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
+        
+    </Grid>
+</UserControl>

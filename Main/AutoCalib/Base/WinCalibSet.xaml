@@ -1,0 +1,26 @@
+﻿<Window x:Class="Main.WinCalibSet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="校准参数设置" Height="600" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <TabControl>
+            <TabItem Header="校准功能选择">
+                <local:UCFunctionSelection x:Name="ucFunctionSelection"/>
+            </TabItem>
+            <TabItem Header="残材1检测校准参数">
+                <local:UCSetResidueCalibPar x:Name="ucSetResidueCalibPar1"/>
+            </TabItem>
+            <TabItem Header="残材2检测校准参数">
+                <local:UCSetResidueCalibPar x:Name="ucSetResidueCalibPar2"/>
+            </TabItem>
+            <TabItem Header="单目校准参数">
+                <local:UCMonoCalibPar x:Name="ucMonoCalibPar"/>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>

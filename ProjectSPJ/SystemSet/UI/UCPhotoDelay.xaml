@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="ProjectSPJ.UCPhotoDelay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib"
+             xmlns:local="clr-namespace:ProjectSPJ"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Unloaded="UserControl_Unloaded">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="ControlLib:DoubleUpDown">
+                <Setter Property="MinHeight" Value="30"/>
+                <Setter Property="MinWidth" Value="80"/>
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Increment" Value="10"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label Background="DeepSkyBlue" Content="拍照延时设置" FontSize="15"
+               VerticalContentAlignment="Center" />
+        <WrapPanel Grid.Row="1">
+            <GroupBox Header="粗定位拍照延时">
+                <StackPanel Margin="3">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="工作拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayRoughly, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="标定拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayRoughlyCalib, Mode=TwoWay}" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="精定位拍照延时">
+                <StackPanel Margin="3" >
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="第一次拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayPrecisePos1, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="第二次拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayPrecisePos2, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="   标定拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayPreciseCalib, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="残材拍照延时">
+                <StackPanel Margin="3" >
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="    残材1延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayResidue1, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="    残材2延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayResidue2, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="    残材3延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayResidue3, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="标定拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayResidueCalib, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="单目相机延时">
+                <StackPanel Margin="3" >
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="   位置一延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayMonoPos1, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="   位置二延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayMonoPos2, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3" >
+                        <Label Content="标定拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayMonoCalib, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="卡塞拍照延时">
+                <StackPanel Margin="3">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="工作拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayCST, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="标定拍照延时:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DelayCSTCalib, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="2" Content="保存" Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
+    </Grid>
+</UserControl>

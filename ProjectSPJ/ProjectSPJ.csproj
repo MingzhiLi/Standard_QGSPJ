@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{124AEC23-B7F7-403A-AAD2-80DE10E2698E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ProjectSPJ</RootNamespace>
+    <AssemblyName>ProjectSPJ</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BasicClass">
+      <HintPath>..\DLL\BasicClass.dll</HintPath>
+    </Reference>
+    <Reference Include="BasicComprehensive">
+      <HintPath>..\DLL\BasicComprehensive.dll</HintPath>
+    </Reference>
+    <Reference Include="BasicDisplay, Version=1.0.2019.1116, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\BasicDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="Camera, Version=1.0.2019.1130, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="Common">
+      <HintPath>..\DLL\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlLib, Version=1.0.2019.227, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DealAlgorithm, Version=1.0.2019.1125, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DealAlgorithm.dll</HintPath>
+    </Reference>
+    <Reference Include="DealCalibrate">
+      <HintPath>..\DLL\DealCalibrate.dll</HintPath>
+    </Reference>
+    <Reference Include="DealConfigFile">
+      <HintPath>..\DLL\DealConfigFile.dll</HintPath>
+    </Reference>
+    <Reference Include="DealLog, Version=1.0.2019.1109, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\DealLog.dll</HintPath>
+    </Reference>
+    <Reference Include="DealPLC">
+      <HintPath>..\DLL\DealPLC.dll</HintPath>
+    </Reference>
+    <Reference Include="DealResult">
+      <HintPath>..\DLL\DealResult.dll</HintPath>
+    </Reference>
+    <Reference Include="DealRobot">
+      <HintPath>..\DLL\DealRobot.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Panuon.UI">
+      <HintPath>..\DLL\Panuon.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="SetPar, Version=1.0.2019.1128, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\SetPar.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\DLL\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FileDialogs">
+      <HintPath>..\DLL\Telerik.Windows.Controls.FileDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\DLL\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2019.1.220.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\DLL\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\DLL\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Themes.Fluent">
+      <HintPath>..\DLL\Telerik.Windows.Themes.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\DLL\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Design">
+      <HintPath>..\DLL\WPFToolkit.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Basic\Converter.cs" />
+    <Compile Include="Basic\NumTextColumn.cs" />
+    <Compile Include="Basic\UI\WinPassword.xaml.cs">
+      <DependentUpon>WinPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CalculateFun\MonoCalculate.cs" />
+    <Compile Include="CalculateFun\ResidueCalculate.cs" />
+    <Compile Include="ProductParSet\ParForShow.cs" />
+    <Compile Include="ProductParSet\ProdParBase.cs" />
+    <Compile Include="ProductParSet\UCShowPar.xaml.cs">
+      <DependentUpon>UCShowPar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultStatistics\MonoResult.cs" />
+    <Compile Include="ResultStatistics\ResidueResult.cs" />
+    <Compile Include="ResultStatistics\UCMonoResult.xaml.cs">
+      <DependentUpon>UCMonoResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultStatistics\UCResidueResult.xaml.cs">
+      <DependentUpon>UCResidueResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultStatistics\WinResultStatistics.xaml.cs">
+      <DependentUpon>WinResultStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultStatistics\BaseCalResult.cs" />
+    <Compile Include="ResultStatistics\RoughlyResult.cs" />
+    <Compile Include="ProductParSet\UCComSet.xaml.cs">
+      <DependentUpon>UCComSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductParSet\WinProductPar.xaml.cs">
+      <DependentUpon>WinProductPar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultStatistics\UCRoughlyResult.xaml.cs">
+      <DependentUpon>UCRoughlyResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdvanvedSet\CameraConfig.cs" />
+    <Compile Include="SystemAdvanvedSet\OtherAvancedSet.cs" />
+    <Compile Include="SystemAdvanvedSet\PlatConfig.cs" />
+    <Compile Include="SystemAdvanvedSet\UI\UCAxisConfig.xaml.cs">
+      <DependentUpon>UCAxisConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdvanvedSet\UI\UCCameraConfig.xaml.cs">
+      <DependentUpon>UCCameraConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdvanvedSet\UI\UCOtherAdvancedSet.xaml.cs">
+      <DependentUpon>UCOtherAdvancedSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdvanvedSet\UI\UCPlatConfig.xaml.cs">
+      <DependentUpon>UCPlatConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\FunctionSelect.cs" />
+    <Compile Include="SystemSet\PhotoDelay.cs" />
+    <Compile Include="SystemSet\StdCamPos.cs" />
+    <Compile Include="SystemSet\GlobalThreshold.cs" />
+    <Compile Include="SystemSet\UI\UCFunctionSelect.xaml.cs">
+      <DependentUpon>UCFunctionSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\UI\UCGlobalThreshold.xaml.cs">
+      <DependentUpon>UCGlobalThreshold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\UI\UCOtherSystemSet.xaml.cs">
+      <DependentUpon>UCOtherSystemSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\UI\UCPhotoDelay.xaml.cs">
+      <DependentUpon>UCPhotoDelay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\UI\WinSysSet.xaml.cs">
+      <DependentUpon>WinSysSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CalculateFun\BaseCalculate.cs" />
+    <Compile Include="CalculateFun\PreciseLocation.cs" />
+    <Compile Include="ResultStatistics\PreciseResult.cs" />
+    <Compile Include="ResultStatistics\UCPreciseResult.xaml.cs">
+      <DependentUpon>UCPreciseResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\PickRangeLim.cs" />
+    <Compile Include="CalculateFun\RoughlyLocation.cs" />
+    <Compile Include="SystemSet\UI\UCRangeLimitation.xaml.cs">
+      <DependentUpon>UCRangeLimitation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\Arrow\ArrowBase.cs" />
+    <Compile Include="Basic\Arrow\ArrowBezierCurve.cs" />
+    <Compile Include="Basic\Arrow\ArrowEndsEnum.cs" />
+    <Compile Include="Basic\Arrow\ArrowLine.cs" />
+    <Compile Include="Basic\Arrow\ArrowLineWithText.cs" />
+    <Compile Include="Basic\Arrow\ArrowQuadraticBezier.cs" />
+    <Compile Include="Basic\BaseEnum.cs" />
+    <Compile Include="SystemAdvanvedSet\UI\UCCameraSetBase.xaml.cs">
+      <DependentUpon>UCCameraSetBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdvanvedSet\UI\UCProductReg.xaml.cs">
+      <DependentUpon>UCProductReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdvanvedSet\UI\WinAdvanvedSet.xaml.cs">
+      <DependentUpon>WinAdvanvedSet.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic\BaseSerializer.cs" />
+    <Compile Include="ProductParSet\ParModelValue.cs" />
+    <Compile Include="SystemAdvanvedSet\ProductSet.cs" />
+    <Compile Include="SystemAdvanvedSet\ParRegIndex.cs" />
+    <Compile Include="SystemSet\RobotPar.cs" />
+    <Compile Include="SystemAdvanvedSet\AxisConfigPar.cs" />
+    <Compile Include="SystemAdvanvedSet\UI\UCAxisSet.xaml.cs">
+      <DependentUpon>UCAxisSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\UI\UCRobotPar.xaml.cs">
+      <DependentUpon>UCRobotPar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSet\UI\UCStdCamPos.xaml.cs">
+      <DependentUpon>UCStdCamPos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\iconfont\iconfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Basic\UI\WinPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductParSet\UCComSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductParSet\UCShowPar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductParSet\WinProductPar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultStatistics\UCMonoResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultStatistics\UCResidueResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultStatistics\WinResultStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\BoxRadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\FIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResultStatistics\UCRoughlyResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCAxisConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCCameraConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCOtherAdvancedSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCPlatConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCFunctionSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCGlobalThreshold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCOtherSystemSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCPhotoDelay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\WinSysSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultStatistics\UCPreciseResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCRangeLimitation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCCameraSetBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCProductReg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\WinAdvanvedSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemAdvanvedSet\UI\UCAxisSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCRobotPar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemSet\UI\UCStdCamPos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Image\PlatLB.png" />
+    <Resource Include="Resources\Image\PlatLT.png" />
+    <Resource Include="Resources\Image\PlatRB.png" />
+    <Resource Include="Resources\Image\PlatRT.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

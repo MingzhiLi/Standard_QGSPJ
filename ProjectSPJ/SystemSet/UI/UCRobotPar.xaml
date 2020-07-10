@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="ProjectSPJ.UCRobotPar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib"
+			 xmlns:tk="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:local="clr-namespace:ProjectSPJ"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="700" Unloaded="UserControl_Unloaded">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="ControlLib:DoubleUpDown">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Width" Value="80"/>
+                <Setter Property="Minimum" Value="-1200"/>
+                <Setter Property="Increment" Value="0.01"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label Background="DeepSkyBlue" Content="机器人参数" FontSize="15"
+               VerticalContentAlignment="Center" />
+        <WrapPanel Grid.Row="1">
+            <GroupBox Header="机器人速度"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="高速速度:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding SpeedHigh, Mode=TwoWay}" Increment="1" Minimum="1" Maximum="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="低速速度:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding SpeedLow, Mode=TwoWay}"  Increment="1" Minimum="1" Maximum="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="复位速度:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding SpeedReset, Mode=TwoWay}"  Increment="1" Minimum="1" Maximum="100"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="粗定位取料中心"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosX, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosY, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosZ, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="精定位拍照位"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PrecisePhotoPosX, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PrecisePhotoPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PrecisePhotoPosZ, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PrecisePhotoPosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="抛料位"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DumpPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DumpPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DumpPosZ, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding DumpPosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="残材平台基准位"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PlatPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PlatPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PlatPosZ, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PlatPosR, Mode=TwoWay}" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="备用点位1"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="备用点位2"  MinWidth="150" MinHeight="150" Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="0"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="3" Content="保存" Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
+    </Grid>
+</UserControl>

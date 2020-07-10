@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ProjectSPJ.UCAxisSet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectSPJ"
+             xmlns:geometry ="clr-namespace:DealGeometry"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200" >
+    <GroupBox Header="{Binding AxisSysName, Mode=TwoWay}">
+        <Grid Background="White" Name="gdRoot">
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>                
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="30,0,30,0"/>
+            </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Label Background="DeepSkyBlue" Content="{Binding AxisSystemName}" 
+               Width="{Binding ElementName=gdRoot, Path=ActualWidth}" Height="25"/>
+            <Canvas Grid.Row="1" MinHeight="200">
+            <Label Margin="{Binding RlblMargin}" Content="{Binding RlblContent}"></Label>
+            <geometry:ArrowLineWithText 
+                StartPoint="{Binding StartPoint}"
+                EndPoint="{Binding YEndPoint}"
+                Text="Y轴正方向"
+                TextAlignment="Right"
+                ArrowAngle="30"
+                Stroke="Black"
+                />
+            <geometry:ArrowLineWithText
+                StartPoint="{Binding StartPoint}"
+                EndPoint="{Binding XEndPoint}"
+                Text="X轴正方向"
+                TextAlignment="Right"
+                ArrowAngle="30"
+                Stroke="Black"
+                />
+            <geometry:ArrowQuadraticBezier ControlPoint="{Binding RControlPoint}"
+                                    Stroke="Black"     
+                                    ArrowAngle="30"
+                                    ArrowLength="5"
+                                    IsEnabled="True"
+                                    StartPoint="{Binding RStartPoint}"
+                                    EndPoint="{Binding REndPoint}" />
+            </Canvas>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions >
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="X轴正方向:" />
+                <Label Content="Y轴正方向:"  Grid.Row="1"/>
+                <Label Content="R轴正方向:"  Grid.Row="2"/>
+                <Label Content="拍照移动方向:"  Grid.Row="3"/>
+
+                <ComboBox Grid.Column="1" SelectedItem="{Binding AxisX, Mode=TwoWay}" ItemsSource="{Binding AxisXBinding_L}"/>
+                <ComboBox Grid.Column="1" SelectedItem="{Binding AxisY, Mode=TwoWay}" ItemsSource="{Binding AxisYBinding_L}" Grid.Row="1"/>
+                <ComboBox Grid.Column="1" SelectedItem="{Binding AxisR, Mode=TwoWay}" ItemsSource="{Binding AxisRBinding_L}" Grid.Row="2"/>
+                <ComboBox Grid.Column="1" SelectedItem="{Binding MoveDireciton, Mode=TwoWay}" ItemsSource="{Binding MoveDirectionBinding_L}" Grid.Row="3"/>
+            </Grid>
+        </Grid>
+    </GroupBox>
+</UserControl>

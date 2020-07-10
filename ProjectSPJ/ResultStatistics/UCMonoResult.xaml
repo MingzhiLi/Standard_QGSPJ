@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ProjectSPJ.UCMonoResult"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectSPJ"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
+                <DataGridTextColumn Header="偏差X" Binding="{Binding DeltaX}"/>
+                <DataGridTextColumn Header="偏差Y" Binding="{Binding DeltaY}"/>
+                <DataGridTextColumn Header="偏差R" Binding="{Binding DeltaR}"/>
+                <DataGridTextColumn Header="巡边偏差X" Binding="{Binding DeltaInspX}"/>
+                <DataGridTextColumn Header="巡边偏差Y" Binding="{Binding DeltaInspY}"/>
+                <DataGridTextColumn Header="巡边偏差R" Binding="{Binding DeltaInspR}"/>
+                <DataGridTextColumn Header="二维码偏差X" Binding="{Binding DeltaQrX}"/>
+                <DataGridTextColumn Header="二维码偏差Y" Binding="{Binding DeltaQrY}"/>
+                <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
+                <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

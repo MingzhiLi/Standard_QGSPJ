@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="ProjectSPJ.UCRangeLimitation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:telerik ="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib" 
+             xmlns:local="clr-namespace:ProjectSPJ"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" 
+             Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged" Unloaded="UserControl_Unloaded">
+    <Grid Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+                <Setter Property="Foreground" Value="Green"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="Blue"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources >
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="gdRoot" Margin="30"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="取料范围(标定范围)" ToolTip="标定的范围">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="左上角X："/>
+                    <Label Content="左上角Y：" Grid.Row="1"/>
+                    <Label Content="右下角X：" Grid.Row="2"/>
+                    <Label Content="右下角Y：" Grid.Row="3"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" PreviewTextInput="Tb_PreviewTextInput" 
+                             Text="{Binding CalibRange.LeftTopX, Mode=TwoWay}" TextInput="TextBox_TextInput"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" PreviewTextInput="Tb_PreviewTextInput" 
+                             Text="{Binding CalibRange.LeftTopY, Mode=TwoWay}" TextInput="TextBox_TextInput"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="Tb_PreviewTextInput" 
+                             Text="{Binding CalibRange.RightBottomX, Mode=TwoWay}" TextInput="TextBox_TextInput"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" PreviewTextInput="Tb_PreviewTextInput" 
+                             Text="{Binding CalibRange.RightBottomY, Mode=TwoWay}" TextInput="TextBox_TextInput"></TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="限制取料范围">
+                <DataGrid x:Name="RgvLimtRange" ItemsSource="{Binding LimitRects_L,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                   
+                          AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="All" >
+                    <DataGrid.Columns >
+                        <DataGridTemplateColumn Header="左上X" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Foreground="Red" PreviewTextInput="Tb_PreviewTextInput" Text="{Binding LeftTopX, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="左上Y" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Foreground="Red" PreviewTextInput="Tb_PreviewTextInput" 
+                                             Text="{Binding LeftTopY, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="右下X" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Foreground="Red" PreviewTextInput="Tb_PreviewTextInput" 
+                                             Text="{Binding RightBottomX, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="右下Y" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Foreground="Red" PreviewTextInput="Tb_PreviewTextInput" 
+                                             Text="{Binding RightBottomY, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="说明" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Foreground="Red"
+                                             Text="{Binding Announce, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ControlLib:ButtonBase Background="#FFF7F7F7" BorderBrush="#AA119EDA" Name="BtnAdd" Content="  增加限制范围  " Margin="3" HorizontalAlignment="Right" Click="BtnAdd_Click"/>
+                <ControlLib:ButtonBase Background="#FFF7F7F7" BorderBrush="#AA119EDA" Name="BtnDelete" Content="  删除限制范围  " Margin="3" HorizontalAlignment="Right" Grid.Row="1" Click="BtnDelete_Click"/>
+                <ControlLib:ButtonBase Background="#FFF7F7F7" BorderBrush="#AA119EDA" Name="BtnRefresh" Content="  刷新  " Margin="3" HorizontalAlignment="Left" Click="BtnRefresh_Click"/>
+                <ControlLib:ButtonBase Background="#FFF7F7F7" BorderBrush="#AA119EDA" Name="BtnSave" Content="保  存" Margin="50,5,50,5" Grid.Row="2" Grid.RowSpan="2" Click="BtnSave_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

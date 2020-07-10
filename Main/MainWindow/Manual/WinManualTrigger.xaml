@@ -1,0 +1,29 @@
+﻿<Window x:Class="Main.WinManualTrigger"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:plc="clr-namespace:DealPLC;assembly=DealPLC"
+        xmlns:MainEX="clr-namespace:Main_EX;assembly=Main_EX"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Topmost="{Binding ElementName=ckbTopMost, Path=IsChecked}"
+        Title="手动触发" Height="700" Width="570" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="模拟相机触发">
+                <MainEX:UCTriggerComprehensive x:Name="ucTriggerCamera"/>
+            </TabItem>
+            <TabItem Header="模拟PLC触发">
+                <plc:UCTriggerPLC/>
+            </TabItem>
+        </TabControl>
+        
+        <CheckBox Content="窗口始终保持最前" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                  IsChecked="True" Name="ckbTopMost"/>
+    </Grid>
+</Window>

@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="ProjectSPJ.UCStdCam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectSPJ"
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Unloaded="UserControl_Unloaded">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="ControlLib:DoubleUpDown">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Width" Value="80"/>
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Increment" Value="0.01"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Background="SkyBlue" Content="相机基准位（像素坐标）" FontSize="15"
+               VerticalContentAlignment="Center" />
+        <WrapPanel Grid.Row="1">
+            <GroupBox Header="精定位相机" MinHeight="100" MinWidth="200">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="基准位X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PreciseCamStdX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="基准位Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PreciseCamStdY, Mode=TwoWay}"/>
+                    </StackPanel>                    
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="单目相机" MinHeight="200" MinWidth="200">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="位置1基准位X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="位置1基准位Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="位置2基准位X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="位置2基准位Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="旋转中心X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="旋转中心Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding PickPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="卡塞相机" MinHeight="100" MinWidth="200">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="基准位X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding CSTCamStdX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="基准位Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding CSTCamStdY, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="2" Content="保存" Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
+    </Grid>
+</UserControl>

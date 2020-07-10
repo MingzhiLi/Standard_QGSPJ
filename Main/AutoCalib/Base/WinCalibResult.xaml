@@ -1,0 +1,23 @@
+﻿<Window x:Class="Main.WinCalibResult"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="自动校准结果" Height="750" Width="1000" Closed="Window_Closed" Loaded="Window_Loaded" WindowState="Maximized">
+    <Grid>
+        <TabControl>
+            <TabItem Header="残材1结果">
+                <Grid>
+                    <local:UCResultResidue x:Name="ucResultResidue1" Margin="3"></local:UCResultResidue>
+                </Grid>
+            </TabItem>
+            <TabItem Header="残材2结果">
+                <Grid>
+                    <local:UCResultResidue x:Name="ucResultResidue2" Margin="3"></local:UCResultResidue>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="ProjectSPJ.WinResultStatistics"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSPJ"
+        mc:Ignorable="d"
+        Title="结果统计" Height="450" Width="800" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl>
+            <TabItem Header="粗定位结果统计">
+                <local:UCRoughlyResult></local:UCRoughlyResult>
+            </TabItem>
+            <TabItem Header="精定位结果统计">
+                <local:UCPreciseResult></local:UCPreciseResult>
+            </TabItem>
+            <TabItem Header="残材1">
+                <local:UCResidueResult x:Name="ucResidueResult1"/>
+            </TabItem>
+            <TabItem Header="残材2">
+                <local:UCResidueResult x:Name="ucResidueResult2"/>                
+            </TabItem>
+            <TabItem Header="单目">
+                <local:UCMonoResult x:Name="ucMonoResult"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

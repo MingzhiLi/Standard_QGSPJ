@@ -1,0 +1,35 @@
+﻿<Window x:Class="ProjectSPJ.WinSysSet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSPJ"
+        mc:Ignorable="d"
+        Title="系统设置" Height="450" Width="800" MinHeight="600" 
+        Closed="Window_Closed" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl>
+            <TabItem Header="粗定位取料范围">
+                <local:UCRangeLimitation></local:UCRangeLimitation>
+            </TabItem>
+            <TabItem Header="拍照延时">
+                <local:UCPhotoDelay/>
+            </TabItem>
+            <TabItem Header="全局阈值">
+                <local:UCGlobalThreshold/>
+            </TabItem>
+            <TabItem Header="机器人基准位设置">
+                <local:UCRobotPar></local:UCRobotPar>
+            </TabItem>
+            <TabItem Header="相机基准位">
+                <local:UCStdCam></local:UCStdCam>
+            </TabItem>
+            <TabItem Header="功能启停">
+                <local:UCFunctionSelect/>
+            </TabItem>
+            <TabItem Header="其他设置">
+                <local:UCOtherSystemSet/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

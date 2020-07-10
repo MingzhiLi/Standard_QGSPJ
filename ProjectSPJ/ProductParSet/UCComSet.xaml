@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="ProjectSPJ.UCComSet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib"
+             xmlns:local="clr-namespace:ProjectSPJ"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="800" Unloaded="UserControl_Unloaded">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="ControlLib:DoubleUpDown">
+                <Setter Property="MinHeight" Value="20"/>
+                <Setter Property="MinWidth" Value="80"/>
+                <Setter Property="Minimum" Value="-10"/>
+                <Setter Property="Increment" Value="0.01"/>
+            </Style>
+            <Style TargetType="GroupBox">
+                <Setter Property="MinWidth" Value="150"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label Background="DeepSkyBlue" Content="补偿值设置" FontSize="15"
+               VerticalContentAlignment="Center" />
+        <WrapPanel Grid.Row="1">
+            <GroupBox Header="皮带线距离补偿">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X方向:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding BeltComX, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y方向:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding BeltComY, Mode=TwoWay}" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="粗定位取料补偿">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPickPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPickPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPickPosZ, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPickPosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="粗定位取料后位移">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding MoveDisX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding MoveDisY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding MoveDisZ, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding MoveDisR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="残材平台放片位置补偿" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPutPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPutPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Z:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPutPosZ, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPutPosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="残材平台高度分别补偿" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="A面:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPlatZ1, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="B面:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComPlatZ2, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="二维码位置补偿">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComQrCodePosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComQrCodePosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComQrCodePosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="巡边位置补偿">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComInspPosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComInspPosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComInspPosR, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="插栏补偿" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="X:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComInsertPosHor, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="Y:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComInsertPosVer, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="R:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ComInspPosR, Mode=TwoWay}"/>
+                    </StackPanel>-->
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+        <Label Background="DeepSkyBlue" Content="产品阈值设置" FontSize="15" Grid.Row="2"
+               VerticalContentAlignment="Center" />
+        <WrapPanel Grid.Row="3">
+            <GroupBox Header="精定位面积阈值">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="最小比例:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdAreaMin, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="最大比例:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdAreaMax, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="残材检测阈值:" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="残材1:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdResidue1, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="残材2:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdResidue2, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="残材3:"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdResidue3, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="M直线交点阈值:">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="M直线标准夹角:" Width="120"/>
+                        <ControlLib:DoubleUpDown Value="{Binding StdMLineAngle, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="M直线夹角偏差范围:" Width="120"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdMLineDev, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="长宽检测阈值:" >
+                <StackPanel IsEnabled="{Binding IsMovePhoto}">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="长度偏差阈值:" Width="120"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdLengthDev, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Label Content="宽度偏差阈值:" Width="120"/>
+                        <ControlLib:DoubleUpDown Value="{Binding ThdWidthDev, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="4" Content="保     存" Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
+    </Grid>
+</UserControl>
