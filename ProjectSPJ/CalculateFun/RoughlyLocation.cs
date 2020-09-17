@@ -42,7 +42,7 @@ namespace ProjectSPJ
                 }
 
                 roughlyResult.Info = "坐标计算OK";
-                roughlyResult.PickPos = new Point4D(p2DPickPos.X + ParModelValue.Inst.ComPickPosR, 
+                roughlyResult.PickPos = new Point4D(p2DPickPos.X + ParModelValue.Inst.ComPickPosX, 
                                       p2DPickPos.Y + ParModelValue.Inst.ComPickPosY, 
                                       RobotPar.Inst.PickPosZ + ProductSet.Inst.Thickness + ParModelValue.Inst.ComPickPosZ, 
                                       RobotPar.Inst.PickPosR + ParModelValue.PickAngle + roughlyResult.R);

@@ -70,7 +70,6 @@ namespace Main
                 {
                     FinishPhotoPLC(2);
                     ShowAlarm("残材相机" + g_NoCamera + "计算完成，结果NG");
-                    SaveBitmapImage(false, "位置" + (int)pos);
                     g_UCDisplayCamera.ShowResult(residueResult.ResultForShow);
                     return StateComprehensive_enum.False;
                 }
@@ -78,7 +77,6 @@ namespace Main
                 {
                     FinishPhotoPLC(1);
                     ShowState("残材相机" + g_NoCamera + "计算完成，结果OK");
-                    SaveBitmapImage(true, "位置" + (int)pos);
                     g_UCDisplayCamera.ShowResult(residueResult.ResultForShow);
                     return StateComprehensive_enum.True;
                 }
@@ -90,22 +88,18 @@ namespace Main
                     }
                     FinishPhotoPLC(2);
                     g_UCDisplayCamera.ShowResult(residueResult.ResultForShow, false);
-                    SaveBitmapImage(false, "位置" + (int)pos);
                     return StateComprehensive_enum.False;
                 }
-
             }
             catch(Exception ex)
             {
                 FinishPhotoPLC(2);
                 Log.L_I.WriteError(NameClass, ex);
-                SaveBitmapImage(false, "位置" + (int)pos);
                 ShowWinError("残材相机" + g_NoCamera + "处理过程中发生异常");
                 return StateComprehensive_enum.False;
             }
             finally
             {
-                residueResult.AddToResultList(residueResult_L);
             }
         }
         #endregion

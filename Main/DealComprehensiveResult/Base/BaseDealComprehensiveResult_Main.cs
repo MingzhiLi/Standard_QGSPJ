@@ -37,7 +37,7 @@ namespace Main
         //public static Point2D PWorkMark1 = new Point2D();
         //public static Point2D PWorkMark2 = new Point2D();
         /// <summary>
-        /// 放大系数 --YF
+        /// 放大系数 
         /// </summary>
         public double AMP { get => ParCalibWorld.V_I[g_NoCamera]; }
 

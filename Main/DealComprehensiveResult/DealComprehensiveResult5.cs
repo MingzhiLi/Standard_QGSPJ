@@ -78,6 +78,16 @@ namespace Main
 
                 Display(Pos_enum.Pos1, htResult, blResult, sw);
 
+                if (blResult)
+                {
+                    _monoResult.ImagePath.Add(SaveBitmapImage(true, "位置1"));
+                    _monoResult.ScreenImage.Add(SaveScreenImage(true, "位置1"));
+                }
+                else
+                {
+                    _monoResult.ImagePath.Add(SaveBitmapImage(false, "位置1"));
+                    _monoResult.ScreenImage.Add(SaveScreenImage(false, "位置1"));
+                }
                 #endregion 显示和日志记录
             }
         }
@@ -96,9 +106,10 @@ namespace Main
             Stopwatch sw = new Stopwatch();
             sw.Restart();
             #endregion 定义
+
+            MonoResult monoResult;
             try
             {
-                //TestTime();
                 StateComprehensive_enum stateComprehensive_e = StateComprehensive_enum.True;
 
                 if (ParStateSoft.StateMachine_e == StateMachine_enum.NullRun)
@@ -124,10 +135,11 @@ namespace Main
                 {
                     ShowAlarmCamera(_monoResult.Info);
                     FinishPhotoPLC(CameraResult.NG);
-                    SaveBitmapImage(false, "位置2");
+                    monoResult = _monoResult.Clone() as MonoResult;
+                    monoResult.AddToResultList();
+                    blResult = false;
                     return StateComprehensive_enum.False;
                 }
-                MonoResult monoResult;
                 if (!CalDelta(ParModelValue.WastageX,
                     ParModelValue.Inst.MonoRotCenter,
                     StdCamPos.Inst.MonoCamStd, AxisConfigPar.MonoAxisSystem))
@@ -136,6 +148,7 @@ namespace Main
                     FinishPhotoPLC(CameraResult.NG);
                     monoResult = _monoResult.Clone() as MonoResult;
                     monoResult.AddToResultList();
+                    blResult = false;
                     return StateComprehensive_enum.False;
                 }
                 double[] deltaInsp = new double[3];
@@ -158,8 +171,6 @@ namespace Main
                           + new Point2D(_monoResult.DeltaQrX, _monoResult.DeltaQrY));
 
 
-                monoResult = _monoResult.Clone() as MonoResult;
-                monoResult.AddToResultList();
                 return StateComprehensive_enum.True;
             }
             catch (Exception ex)
@@ -173,6 +184,20 @@ namespace Main
                 #region 显示和日志记录
 
                 Display(Pos_enum.Pos2, htResult, blResult, sw);
+
+                if(blResult)
+                {
+                    _monoResult.ImagePath.Add(SaveBitmapImage(true, "位置2"));
+                    _monoResult.ScreenImage.Add(SaveScreenImage(true, "位置2"));
+                }
+                else
+                {
+                    _monoResult.ImagePath.Add(SaveBitmapImage(false, "位置2"));
+                    _monoResult.ScreenImage.Add(SaveScreenImage(false, "位置2"));
+                }
+
+                monoResult = _monoResult.Clone() as MonoResult;
+                monoResult.AddToResultList();
                 #endregion 显示和日志记录
             }
         }

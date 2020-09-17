@@ -113,7 +113,7 @@ namespace Main
                 if (CSTLocation.CurrentCstNo == 1)
                 {
                     stdCom = GlobalThreshold.Inst.ComStdCst;
-                    com = GlobalThreshold.Inst.ComStdCst + ParModelValue.Inst.ComInsertPosHor;
+                    com = GlobalThreshold.Inst.ComStdCst + ParModelValue.Inst.ComInsertPosHor + +ModelParams.InsertTempComX; 
                 }
                 else if (CSTLocation.CurrentCstNo == 2)
                 {
@@ -178,7 +178,7 @@ namespace Main
             CSTLocation.CurrentCstNo = id;
             CSTLocation.ResetCstData();
         }
-
+        
         void ChangeCol()
         {
             CSTLocation.SetLeftDevEnable();

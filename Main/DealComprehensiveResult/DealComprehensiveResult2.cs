@@ -81,6 +81,19 @@ namespace Main
                 {
                     Display(Pos_enum.Pos1, htResult, blResult, sw);
                 }
+                if(blResult)
+                {
+                    _preciseResult.ImagePath.Add(SaveBitmapImage(true, "位置一"));
+                    _preciseResult.ScreenImage.Add(SaveScreenImage(true, "位置一"));
+                }
+                else
+                {
+                    _preciseResult.ImagePath.Add(SaveBitmapImage(false, "位置一"));
+                    _preciseResult.ScreenImage.Add(SaveScreenImage(false, "位置一"));
+                    g_UCDisplayCamera.ShowResult(_preciseResult.ResultForShow, false);
+                    PreciseResult preciseResult = _preciseResult.Clone() as PreciseResult;
+                    preciseResult.AddToResultList();   ///第一次拍照失败会直接抛料，所以要记录
+                }
             }
         }
         #endregion 位置1拍照
@@ -125,6 +138,18 @@ namespace Main
                 {
                     Display(Pos_enum.Pos1, htResult, blResult, sw);
                 }
+                if (blResult)
+                {
+                    _preciseResult.ImagePath.Add(SaveBitmapImage(true, "位置二"));
+                    _preciseResult.ScreenImage.Add(SaveScreenImage(true, "位置二"));
+                }
+                else
+                {
+                    _preciseResult.ImagePath.Add(SaveBitmapImage(false, "位置二"));
+                    _preciseResult.ScreenImage.Add(SaveScreenImage(false, "位置二"));
+                }
+                PreciseResult preciseResult = _preciseResult.Clone() as PreciseResult;
+                preciseResult.AddToResultList();
             }
         }
         #endregion 位置2拍照

@@ -79,7 +79,8 @@ namespace Main
                             //最大工位号+1，作为人工确认中片未取完
                             LogicPLC.L_I.WriteRegData1((int)DataRegister1.NextStation, index + 1);
                             FinishPhotoPLC(CameraResult.NG);
-                            roughlyResult.ImagePath = SaveBitmapImage(false, "未取完");
+                            g_BaseDealComprehensive.SaveNGImage("C1");
+                            //roughlyResult.ImagePath = SaveBitmapImage(false, "未取完");
                             return StateComprehensive_enum.True;
                         }                        
                         RegeditMain.R_I.PickCnt = 0;
@@ -88,7 +89,7 @@ namespace Main
                     // 通知当前工位取完，index=工位号，plc提供
                     LogicPLC.L_I.WriteRegData1((int)DataRegister1.NextStation, index);
                     FinishPhotoPLC(CameraResult.OK);
-                    roughlyResult.ImagePath = SaveBitmapImage(false);
+                    g_BaseDealComprehensive.SaveNGImage("C1");
                 }
                 else
                 {
@@ -98,7 +99,7 @@ namespace Main
                         WinError.GetWinInst().ShowError(roughlyResult.Info);
 
                         FinishPhotoPLC(CameraResult.NG);
-                        roughlyResult.ImagePath = SaveBitmapImage(false, "失败");
+                        g_BaseDealComprehensive.SaveNGImage("C1");
                         return StateComprehensive_enum.False;
                     }
                     else
@@ -107,16 +108,17 @@ namespace Main
                         g_UCDisplayCamera.ShowResult(roughlyResult.InfoForShow);
 
                         //来料时标记NG
-                        //if (ModelParams.DumpList_Solid.Contains((RegeditMain.R_I.PickCnt + 1).ToString()))
-                        //{
-                        //    ShowState(string.Format("通知机器人当前第{0}标记为NG片", RegeditMain.R_I.PickCnt + 1));
-                        //    LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPickDump);
-                        //}               
+                        if (ModelParams.DumpList_Solid.Contains((RegeditMain.R_I.PickCnt + 1).ToString()))
+                        {
+                            ShowState(string.Format("通知机器人当前第{0}标记为NG片", RegeditMain.R_I.PickCnt + 1));
+                            LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPickDump, ShowState);
+                        }
                     }
 
                     LogicRobot.L_I.WriteRobotCMD(roughlyResult.PickPos, LogicRobot.RbtCmdPickPos, ShowState_Robot);
                     //ShowState("已发送取片坐标:" + roughlyResult.PickPos.ToString());
-                    roughlyResult.ImagePath = SaveBitmapImage(true);
+                    //roughlyResult.ImagePath = SaveBitmapImage(true);
+                    g_BaseDealComprehensive.SaveOKImage("C1");
                     FinishPhotoPLC(CameraResult.OK);
                 }
 

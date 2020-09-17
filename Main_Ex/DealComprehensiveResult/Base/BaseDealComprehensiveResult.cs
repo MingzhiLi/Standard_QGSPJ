@@ -752,6 +752,29 @@ namespace Main_EX
             return string.Empty;
         }
 
+        public string SaveScreenImage(bool blResult, string strType = "")
+        {
+            string strResult = "OK";
+            if (!blResult)
+            {
+                strResult = "NG";
+            }
+            try
+            {
+                string strPath = Log.CreateHourFile(PathRootImage + "\\Camera"
+                                 + g_NoCamera + "\\" + strType + strResult + "截图\\");
+                string strName = DateTime.Now.ToString("屏幕截图mm-ss");
+                long l = g_UCDisplayCamera.SaveBitFullPath_Screen(strName, strPath);
+                ShowState(l.ToString());
+                return strPath + strName + "_PI";
+            }
+            catch (Exception ex)
+            {
+                Log.L_I.WriteError(NameClass, ex);
+            }
+            return string.Empty;
+        }
+
         /// <summary>
         /// 同时检查2个M直线交点的结果
         /// </summary>

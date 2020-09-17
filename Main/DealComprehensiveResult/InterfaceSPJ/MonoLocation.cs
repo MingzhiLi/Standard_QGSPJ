@@ -110,7 +110,6 @@ namespace Main
                 _monoResult.Info = "位置1拍照NG";
                 ShowAlarmCamera(_monoResult.Info);
                 FinishPhotoPLC(CameraResult.NG);
-                SaveBitmapImage(false, "位置1");
                 return false;
             }
             _monoResult.Mark1X = resultCross.X;
@@ -120,12 +119,10 @@ namespace Main
                 _monoResult.Info = "位置1拍照NG";
                 ShowAlarmCamera(_monoResult.Info);
                 FinishPhotoPLC(CameraResult.NG);
-                SaveBitmapImage(false, "位置1");
                 return false;
             }
             FinishPhotoPLC(CameraResult.OK);
             g_UCDisplayCamera.ShowResult("位置1拍照OK");
-            SaveBitmapImage(true, "位置1");
             return true;
         }
 

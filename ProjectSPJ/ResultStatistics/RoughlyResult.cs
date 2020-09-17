@@ -7,6 +7,7 @@ using BasicClass;
 using System.Reflection;
 using System.IO;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace ProjectSPJ
 {
@@ -42,10 +43,41 @@ namespace ProjectSPJ
         }
 
         /// <summary>
-        /// 文件存储路径
+        /// 加载指定小时前的日志文件
         /// </summary>
-        public string LogFile => LogPath + this.NameFile + ".xml";
+        /// <param name="hour">指定的时间</param>
+        /// <param name="data">加载的数据</param>
+        public static void LoadEverFile(int hour, out List<RoughlyResult> data)
+        {
+            string filePath = new RoughlyResult().GetEverLogFile(hour);
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("不存在" + DateTime.Now.AddHours(hour).ToString("yyyy年MM月dd日HH点")
+                                + "的残材检测结果文件！");
+                data = new List<RoughlyResult>();
+                return;
+            }
+            data = LoadLog<List<RoughlyResult>>(filePath);
+        }
 
+        /// <summary>
+        /// 加载指定日期的所有日志
+        /// </summary>
+        /// <param name="dateTime">日期</param>
+        /// <param name="data">加载的日志</param>
+        public static void LoadAllDayFile(DateTime dateTime, out List<RoughlyResult> data)
+        {
+            data = new List<RoughlyResult>();
+            RoughlyResult roughly = new RoughlyResult();
+            for (int i = 0; i < 24; i++)
+            {
+                string path = roughly.GetDefineTimeLogFile(dateTime.AddHours(i));
+                if(File.Exists(path))
+                {
+                    data.AddRange(LoadLog<List<RoughlyResult>>(path));
+                }
+            }
+        }
         /// <summary>
         /// 文件保存路径名称，如果不重写则会以基类名称来保存
         /// </summary>
@@ -67,9 +99,7 @@ namespace ProjectSPJ
             }
             GetPar();
             SaveLogToLocal(_roughlyResult_L, LogFile);
-        }
-
-        
+        }        
 
         #region 数据内容
         /// <summary>

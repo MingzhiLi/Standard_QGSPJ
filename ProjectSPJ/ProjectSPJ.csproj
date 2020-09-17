@@ -116,6 +116,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -150,6 +152,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WPFToolkit">
       <HintPath>..\DLL\WPFToolkit.dll</HintPath>
     </Reference>
@@ -172,6 +175,9 @@
     </Compile>
     <Compile Include="Basic\Converter.cs" />
     <Compile Include="Basic\NumTextColumn.cs" />
+    <Compile Include="Basic\UI\UCPictureBox.xaml.cs">
+      <DependentUpon>UCPictureBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Basic\UI\WinPassword.xaml.cs">
       <DependentUpon>WinPassword.xaml</DependentUpon>
     </Compile>
@@ -183,9 +189,16 @@
       <DependentUpon>UCShowPar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResultStatistics\MonoResult.cs" />
+    <Compile Include="ResultStatistics\ProductivityStatistic.cs" />
     <Compile Include="ResultStatistics\ResidueResult.cs" />
+    <Compile Include="ResultStatistics\UCLogViewer.xaml.cs">
+      <DependentUpon>UCLogViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResultStatistics\UCMonoResult.xaml.cs">
       <DependentUpon>UCMonoResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultStatistics\UCProductivityStatistic.xaml.cs">
+      <DependentUpon>UCProductivityStatistic.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResultStatistics\UCResidueResult.xaml.cs">
       <DependentUpon>UCResidueResult.xaml</DependentUpon>
@@ -309,6 +322,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Basic\UI\UCPictureBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Basic\UI\WinPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,7 +342,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResultStatistics\UCLogViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResultStatistics\UCMonoResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultStatistics\UCProductivityStatistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

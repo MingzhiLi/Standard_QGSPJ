@@ -22,7 +22,7 @@ namespace Main
         /// <summary>
         /// 精定位的拍照结果
         /// </summary>
-        private PreciseResult _preciseResult = new PreciseResult();
+        protected PreciseResult _preciseResult = new PreciseResult();
 
         #region 精定位左右移动拍照时产品的四个点
         private Point2D pLeftTop = new Point2D();
@@ -60,15 +60,11 @@ namespace Main
                 _preciseResult.DeltaR += ParModelValue.Inst.ComPutPosR;
                 g_UCDisplayCamera.ShowResult(_preciseResult.ResultForShow);
                 LogicRobot.L_I.WriteRobotCMD(ParModelValue.PrecisePhotoPos2.Add(3, _preciseResult.DeltaR), LogicRobot.RbtCmdPreciseAngle, ShowState);
-                SaveBitmapImage(true, "第一次拍照");
                 return StateComprehensive_enum.True;
             }
             else
             {
-                g_UCDisplayCamera.ShowResult(_preciseResult.ResultForShow, false);
-                _preciseResult.AddToResultList();   ///第一次拍照失败会直接抛料，所以要记录
                 LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPreciseFailed, ShowState);
-                SaveBitmapImage(false, "第一次拍照");
                 RegeditMain.R_I.PreciseNG++;
                 return StateComprehensive_enum.False;
             }
@@ -116,28 +112,29 @@ namespace Main
 
 
             ResultBlob resultBlob = (ResultBlob)htResult[cellName];
-            double amp = ParCalibWorld.V_I[g_NoCamera];
-            _preciseResult.Area = Math.Round(resultBlob.Area * amp * amp, 3);
-            _preciseResult.DeltaX = Math.Round((resultBlob.X - StdCamPos.Inst.PreciseCamStdX) * amp, 3);
-            _preciseResult.DeltaY = Math.Round((resultBlob.Y - StdCamPos.Inst.PreciseCamStdY) * amp, 3);
+            
+            _preciseResult.Area = Math.Round(resultBlob.Area * AMP * AMP, 3);
+            _preciseResult.DeltaX = Math.Round((resultBlob.X - StdCamPos.Inst.PreciseCamStdX) * AMP, 3);
+            _preciseResult.DeltaY = Math.Round((resultBlob.Y - StdCamPos.Inst.PreciseCamStdY) * AMP, 3);
+            _preciseResult.Width = Math.Round(resultBlob.Height * AMP, 3);
+            _preciseResult.Length = Math.Round(resultBlob.Width * AMP, 3);
 
-            if (PreciseLocation.CalPutPos( AxisConfigPar.RobotAxisSystem, _preciseResult))
+            if (CheckLength() &&  ///检查产品长宽
+                PreciseLocation.CalPutPos(AxisConfigPar.RobotAxisSystem, _preciseResult)) //计算放片位置
             {
-                _preciseResult.ImagePath = SaveBitmapImage(true, "第二次拍照");
                 _preciseResult.BlResult = true;
                 g_UCDisplayCamera.ShowResult(_preciseResult.ResultForShow);
                 LogicRobot.L_I.WriteRobotCMD(
                          _preciseResult.PutPos,
                          LogicRobot.RbtCmdPreciseResult, ShowState);
+
             }
             else
             {
-                _preciseResult.ImagePath = SaveBitmapImage(false, "第二次拍照");
                 g_UCDisplayCamera.ShowResult(_preciseResult.Info, false);
                 LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPreciseFailed, ShowState);
+                return false;
             }
-            PreciseResult preciseResult = _preciseResult.Clone() as PreciseResult;
-            preciseResult.AddToResultList();
             return true;
         }
 
@@ -293,14 +290,12 @@ namespace Main
                 htResult, pRightTop, pRightBot, out errorInfo))
             {
                 g_UCDisplayCamera.ShowResult("位置1OK");
-                SaveBitmapImage(true, "第一次拍照");
                 LogicRobot.L_I.WriteRobotCMD(ParModelValue.PrecisePhotoPos2, LogicRobot.RbtCmdPreciseAngle, ShowState);    ///发送精定位位置2的拍照坐标
                 return StateComprehensive_enum.True;
             }
             _preciseResult.Info = errorInfo;
             g_UCDisplayCamera.ShowResult(errorInfo, false);
             LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPreciseFailed, ShowState);
-            SaveBitmapImage(false, "第一次拍照");
             RegeditMain.R_I.PreciseNG++;
             return StateComprehensive_enum.False;
         }
@@ -338,7 +333,6 @@ namespace Main
                         && PreciseLocation.CalPutPos(AxisConfigPar.RobotAxisSystem, _preciseResult))  //计算偏差及放片位置
                     {
                         _preciseResult.DeltaR += ParModelValue.Inst.ComPutPosR;
-                        _preciseResult.ImagePath = SaveBitmapImage(true, "第二次拍照");
                         _preciseResult.BlResult = true;
                         g_UCDisplayCamera.ShowResult(_preciseResult.ResultForShow);
                         LogicRobot.L_I.WriteRobotCMD(
@@ -348,7 +342,7 @@ namespace Main
                     }
                     else
                     {
-                        _preciseResult.ImagePath = SaveBitmapImage(false, "第二次拍照");
+                        RegeditMain.R_I.PreciseNG++;
                         g_UCDisplayCamera.ShowResult(_preciseResult.Info, false);
                         LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPreciseFailed, ShowState);
                         ShowAlarm(_preciseResult.Info);
@@ -357,15 +351,13 @@ namespace Main
                 }
                 else
                 {
+                    RegeditMain.R_I.PreciseNG++;
                     _preciseResult.Info = errorInfo;
-                    _preciseResult.ImagePath = SaveBitmapImage(false, "第二次拍照");
                     g_UCDisplayCamera.ShowResult(errorInfo, false);
                     LogicRobot.L_I.WriteRobotCMD(LogicRobot.RbtCmdPreciseFailed, ShowState);
                     stateComprehensive_e = StateComprehensive_enum.False;
                 }
-                PreciseResult preciseResult = _preciseResult.Clone() as PreciseResult;
-                preciseResult.AddToResultList();
-                return stateComprehensive_e;
+                return StateComprehensive_enum.True;
 
             }
             catch
@@ -415,6 +407,10 @@ namespace Main
             return angle;
         }
 
+        /// <summary>
+        /// 检查产品长宽
+        /// </summary>
+        /// <returns></returns>
         public bool CheckLength()
         {
             if(!FunctionSelect.Inst.IsCheckLength)

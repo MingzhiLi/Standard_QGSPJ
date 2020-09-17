@@ -59,6 +59,15 @@ namespace ProjectSPJ
 
         #region 文件保存根目录
         /// <summary>
+        /// xml文件保存格式
+        /// </summary>
+        protected static string FormateXML => ".xml";
+        /// <summary>
+        /// csv文件保存格式
+        /// </summary>
+        protected static string FormateCSV => ".csv";
+
+        /// <summary>
         /// 配置文件文件保存根目录
         /// </summary>
         protected static string ConfigBaseSavePath
@@ -311,9 +320,38 @@ namespace ProjectSPJ
             localData = default(T);
             return false;
         }
-
-
         #endregion
+
+        #region Save CSV
+        /// <summary>
+        /// 保存CSV文件
+        /// </summary>
+        /// <param name="filePath">文件路径</param>
+        /// <param name="append"></param>
+        /// <param name="data">数据</param>
+        public static void WriteCSV(string filePath, bool append, string[][] data)
+        {
+            try
+            {
+                using (StreamWriter fileWriter = new StreamWriter(filePath + FormateCSV, append, Encoding.Default))
+                {
+                    foreach (String[] strArr in data)
+                    {
+                        fileWriter.WriteLine(String.Join(",", strArr));
+                    }
+                    fileWriter.Flush();
+                    fileWriter.Close();
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+              
+            }
+        }
+        #endregion SaveCSV
 
         #endregion 绑定及序列化等
     }

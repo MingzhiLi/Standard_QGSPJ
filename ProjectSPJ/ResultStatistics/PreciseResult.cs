@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Reflection;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace ProjectSPJ
 {
@@ -19,6 +20,11 @@ namespace ProjectSPJ
     {
         [field:NonSerialized]
         private static List<PreciseResult> _preciseResult_L = new List<PreciseResult>();
+
+        /// <summary>
+        /// 文件保存名称，如果不重写则会以基类名称来保存
+        /// </summary>
+        protected override string NameFile => MethodBase.GetCurrentMethod().DeclaringType.Name;
 
         /// <summary>
         /// 软件启动时使用，加载当前时间的本地日志记录，软件重启时防止重写数据覆盖
@@ -35,15 +41,7 @@ namespace ProjectSPJ
         {
             data = LoadLog<List<PreciseResult>>(new PreciseResult().LogFile);
         }
-        /// <summary>
-        /// 文件存储路径
-        /// </summary>
-        public string LogFile => LogPath + this.NameFile + ".xml";
 
-        /// <summary>
-        /// 文件保存名称，如果不重写则会以基类名称来保存
-        /// </summary>
-        protected override string NameFile => MethodBase.GetCurrentMethod().DeclaringType.Name;
 
         /// <summary>
         /// 将结果添加到list
@@ -62,6 +60,44 @@ namespace ProjectSPJ
             GetPar();
             SaveLogToLocal(_preciseResult_L, LogFile);
         }
+
+
+        /// <summary>
+        /// 加载指定小时前的日志文件
+        /// </summary>
+        /// <param name="hour">指定的时间</param>
+        /// <param name="data">加载的数据</param>
+        public static void LoadEverFile(int hour, out List<PreciseResult> data)
+        {
+            string filePath = new PreciseResult().GetEverLogFile(hour);
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("不存在" + DateTime.Now.AddHours(hour).ToString("yyyy年MM月dd日HH点") + "的精定位数据！");
+                data = new List<PreciseResult>();
+                return;
+            }
+            data = LoadLog<List<PreciseResult>>(filePath);
+        }
+
+        /// <summary>
+        /// 加载指定日期的所有日志
+        /// </summary>
+        /// <param name="dateTime">日期</param>
+        /// <param name="data">加载的日志</param>
+        public static void LoadAllDayFile(DateTime dateTime, out List<PreciseResult> data)
+        {
+            data = new List<PreciseResult>();
+            PreciseResult precise = new PreciseResult();
+            for (int i = 0; i < 24; i++)
+            {
+                string path = precise.GetDefineTimeLogFile(dateTime.AddHours(i));
+                if (File.Exists(path))
+                {
+                    data.AddRange(LoadLog<List<PreciseResult>>(path));
+                }
+            }
+        }
+
         /// <summary>
         /// 偏差X
         /// </summary>
@@ -185,7 +221,8 @@ namespace ProjectSPJ
                         "】\n偏差X：" + DeltaX.ToString("f3") +
                         "\n偏差Y：" + DeltaY.ToString("f3") +
                         "\n偏差R：" + DeltaR.ToString("f3") +
-                        "\n" + StrResult;
+                        "\n" + StrResult +
+                        "\n" + Info;
             }
         }
     }

@@ -175,6 +175,9 @@ namespace Main
 
         private void dpData_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            ProductivityStatistic.GetCurrentStatistic(RegeditMain.R_I.PreciseSUM, RegeditMain.R_I.PreciseNG, 
+                                                      RegeditMain.R_I.WastageNG1, RegeditMain.R_I.WastageNG2);
+            ProductivityStatistic.GetHistoryStatistic();
             WinResultStatistics.Inst.Show();
         }
         #endregion 运行数据
@@ -342,8 +345,48 @@ namespace Main
 
         private void btnManulPLC_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
+        private void dpPickSet_MouseEnter(object sender, MouseEventArgs e)
+        {
+            dpPickSet.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+
+        private void dpPickSet_MouseLeave(object sender, MouseEventArgs e)
+        {
+            dpPickSet.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void dpPickSet_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OperationWnd wnd = new OperationWnd();
+            wnd.Show();
+        }
+
+        private void dpTempCST_MouseEnter(object sender, MouseEventArgs e)
+        {
+            dpTempCST.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+
+        private void dpTempCST_MouseLeave(object sender, MouseEventArgs e)
+        {
+            dpTempCST.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void dpTempCST_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ppTempCST.IsOpen = !ppTempCST.IsOpen;
+            ppTempCST.StaysOpen = ppTempCST.IsOpen;
+        }
+
+        private void dudTempCST_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            ModelParams.InsertTempComX = (double)dudTempCST.Value;
+        }
+
+        private void dudTempCST_Loaded(object sender, RoutedEventArgs e)
+        {
+            dudTempCST.Value = ModelParams.InsertTempComX;
+        }
     }
 }

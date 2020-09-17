@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Collections.Generic;
+
 namespace Main
 {
     public partial class DealComprehensiveResult1 : BaseDealComprehensiveResult_Main
@@ -31,8 +32,7 @@ namespace Main
             #endregion 定义
             try
             {
-                return CalcPickPos(1, CellResultPos1, out htResult);
-                
+                return CalcPickPos(1, CellResultPos1, out htResult);                
             }
             catch (Exception ex)
             {
@@ -122,7 +122,7 @@ namespace Main
             bool blResult = true;//结果是否正确
             Stopwatch sw = new Stopwatch();
             sw.Restart();
-            #endregion 定义
+            #endregion 定义 
             try
             {
                 //    StateComprehensive_enum stateComprehensive_e = g_BaseDealComprehensive.DealComprehensivePosNoDisplay(g_UCDisplayCamera, g_HtUCDisplay, Pos_enum.Pos4, out htResult);

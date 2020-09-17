@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
+using ProjectSPJ;
 
 namespace Main
 {
@@ -55,6 +56,7 @@ namespace Main
             {
                 ChangCSTSationNum(i);
                 ChangeCol();
+                ModelParams.InsertTempComX = 0;
                 //TODO: 插栏计数清0
             }
             catch (Exception ex)
@@ -109,6 +111,9 @@ namespace Main
                 ShowState("PLC触发换班，产能重置");
                 RegeditMain.R_I.ID = 0;
                 ProductivityReport.WriteReportIni(i);
+                ProductivityStatistic.Record(i,
+                                             RegeditMain.R_I.PreciseSUM, RegeditMain.R_I.PreciseNG,
+                                             RegeditMain.R_I.WastageNG1, RegeditMain.R_I.WastageNG2);
                 ProductivityReport.ClearReportData();
             }
             catch (Exception ex)
@@ -131,6 +136,7 @@ namespace Main
                     RegeditMain.R_I.WastageNG1++;
                 else if (i == 2)
                     RegeditMain.R_I.WastageNG2++;
+                ShowState("PLC通知残材" + i + "抛料！");
             }
             catch (Exception ex)
             {

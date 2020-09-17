@@ -6,24 +6,45 @@
              xmlns:local="clr-namespace:ProjectSPJ"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" 
-                  AutoGenerateColumns="False" 
-                  IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
-                <DataGridTextColumn Header="偏差X" Binding="{Binding DeltaX}"/>
-                <DataGridTextColumn Header="偏差Y" Binding="{Binding DeltaY}"/>
-                <DataGridTextColumn Header="偏差R" Binding="{Binding DeltaR}"/>
-                <DataGridTextColumn Header="巡边偏差X" Binding="{Binding DeltaInspX}"/>
-                <DataGridTextColumn Header="巡边偏差Y" Binding="{Binding DeltaInspY}"/>
-                <DataGridTextColumn Header="巡边偏差R" Binding="{Binding DeltaInspR}"/>
-                <DataGridTextColumn Header="二维码偏差X" Binding="{Binding DeltaQrX}"/>
-                <DataGridTextColumn Header="二维码偏差Y" Binding="{Binding DeltaQrY}"/>
-                <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
-                <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
-
-            </DataGrid.Columns>
-        </DataGrid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" 
+                      AutoGenerateColumns="False" IsReadOnly="True" 
+                      SelectedCellsChanged="dgResult_SelectedCellsChanged"
+                      MouseDoubleClick="dgResult_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
+                    <DataGridTextColumn Header="偏差X" Binding="{Binding DeltaX}"/>
+                    <DataGridTextColumn Header="偏差Y" Binding="{Binding DeltaY}"/>
+                    <DataGridTextColumn Header="偏差R" Binding="{Binding DeltaR}"/>
+                    <DataGridTextColumn Header="巡边偏差X" Binding="{Binding DeltaInspX}"/>
+                    <DataGridTextColumn Header="巡边偏差Y" Binding="{Binding DeltaInspY}"/>
+                    <DataGridTextColumn Header="巡边偏差R" Binding="{Binding DeltaInspR}"/>
+                    <DataGridTextColumn Header="二维码偏差X" Binding="{Binding DeltaQrX}"/>
+                    <DataGridTextColumn Header="二维码偏差Y" Binding="{Binding DeltaQrY}"/>
+                    <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="1">
+                <local:UCLogViewer x:Name="ucLogViewer"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <local:UCPictureBox x:Name="picturePos1" Margin="2"></local:UCPictureBox>
+            <local:UCPictureBox x:Name="picturePos2" Margin="2" Grid.Row="1"></local:UCPictureBox>
+        </Grid>
     </Grid>
 </UserControl>

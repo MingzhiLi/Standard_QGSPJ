@@ -13,6 +13,7 @@ namespace Main
         public OperationWnd()
         {
             InitializeComponent();
+            spRowCol.DataContext = JustForBinding.Inst;
         }
 
         private void Label_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -32,6 +33,33 @@ namespace Main
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+    }
+
+    public class JustForBinding
+    {
+        public static JustForBinding Inst = new JustForBinding();
+        public int Col
+        {
+            get
+            {
+                return ModelParams.PickArrayCols;
+            }
+            set
+            {
+                ModelParams.PickArrayCols = value;
+            }
+        }
+        public int Row
+        {
+            get
+            {
+                return ModelParams.PickArrayRows;
+            }
+            set
+            {
+                ModelParams.PickArrayRows = value;
+            }
         }
     }
 }

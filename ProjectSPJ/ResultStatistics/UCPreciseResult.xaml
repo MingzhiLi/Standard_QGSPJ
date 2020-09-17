@@ -7,24 +7,49 @@
              xmlns:local="clr-namespace:ProjectSPJ"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" 
-                  IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
-                <DataGridTextColumn Header="偏差X" Binding="{Binding DeltaX}"/>
-                <DataGridTextColumn Header="偏差Y" Binding="{Binding DeltaY}"/>
-                <DataGridTextColumn Header="偏差R" Binding="{Binding DeltaR}"/>
-                <DataGridTextColumn Header="面积" Binding="{Binding Area}"/>
-                <DataGridTextColumn Header="面积比例" Binding="{Binding AreaRatio}"/>
-                <DataGridTextColumn Header="放片位X" Binding="{Binding PutPosX}"/>
-                <DataGridTextColumn Header="放片位Y" Binding="{Binding PutPosY}"/>
-                <DataGridTextColumn Header="放片位R" Binding="{Binding PutPosR}"/>
-                <DataGridTextColumn Header="放片位Z" Binding="{Binding PutPosZ}"/>
-                <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
-                <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
-                
-            </DataGrid.Columns>
-        </DataGrid>  
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" 
+                      CanUserSortColumns="False" AutoGenerateColumns="False" 
+                      SelectedCellsChanged="dgResult_SelectedCellsChanged" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
+                    <DataGridTextColumn Header="偏差X" Binding="{Binding DeltaX}"/>
+                    <DataGridTextColumn Header="偏差Y" Binding="{Binding DeltaY}"/>
+                    <DataGridTextColumn Header="偏差R" Binding="{Binding DeltaR}"/>
+                    <DataGridTextColumn Header="面积" Binding="{Binding Area}"/>
+                    <DataGridTextColumn Header="面积比例" Binding="{Binding AreaRatio}"/>
+                    <DataGridTextColumn Header="长度" Binding="{Binding Length}"/>
+                    <DataGridTextColumn Header="宽度" Binding="{Binding Width}"/>
+                    <DataGridTextColumn Header="放片位X" Binding="{Binding PutPosX}"/>
+                    <DataGridTextColumn Header="放片位Y" Binding="{Binding PutPosY}"/>
+                    <DataGridTextColumn Header="放片位R" Binding="{Binding PutPosR}"/>
+                    <DataGridTextColumn Header="放片位Z" Binding="{Binding PutPosZ}"/>
+                    <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="1">
+                <local:UCLogViewer x:Name="ucLogViewer"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <local:UCPictureBox x:Name="picturePos1" Margin="2"></local:UCPictureBox>
+            <local:UCPictureBox x:Name="picturePos2" Margin="2" Grid.Row="1"></local:UCPictureBox>
+        </Grid>
     </Grid>
 </UserControl>

@@ -22,7 +22,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <Label Background="SkyBlue" Content="相机基准位（像素坐标）" FontSize="15"
+        <Label Background="DeepSkyBlue" Content="相机基准位（像素坐标）" FontSize="15"
                VerticalContentAlignment="Center" />
         <WrapPanel Grid.Row="1">
             <GroupBox Header="精定位相机" MinHeight="100" MinWidth="200">

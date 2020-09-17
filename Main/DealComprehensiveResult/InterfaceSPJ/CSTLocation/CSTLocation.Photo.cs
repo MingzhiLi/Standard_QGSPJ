@@ -68,6 +68,7 @@ namespace Main
                     CSTLocation.SetRightDevEnable((result.X_L[0] - ModelParams.CstStdValue.DblValue1) * AMP);
                 }
 
+                g_UCDisplayCamera.ShowResult("龙骨识别成功");
                 return DealResult(1, @"龙骨识别成功");
             }
             catch (Exception ex)
@@ -119,11 +120,12 @@ namespace Main
                     //    result.DeltaX * ParCalibWorld.V_I[g_NoCamera], deltaY));
                     CSTLocation.TopDev_L.Add(new Point2D(
                         (result.X_L[0] - ModelParams.CstStdValue.DblValue1) * AMP, deltaY));
-
+                    g_UCDisplayCamera.ShowResult("龙骨识别成功");
                     return DealResult(1, string.Format("第{0}列上龙骨识别成功", CSTLocation.TopPhotoCount));
                 }
                 else
                 {
+                    g_UCDisplayCamera.ShowResult(string.Format("第{0}列上龙骨识别失败", CSTLocation.TopPhotoCount), false);
                     return DealResult(2, string.Format("第{0}列上龙骨识别失败", CSTLocation.TopPhotoCount));
                 }
             }
@@ -172,6 +174,7 @@ namespace Main
                     //    result.DeltaX * ParCalibWorld.V_I[g_NoCamera], deltaY));
                     CSTLocation.BottomDev_L.Add(new Point2D(
                         (result.X_L[0]-ModelParams.CstStdValue.DblValue1) * AMP, deltaY));
+                    g_UCDisplayCamera.ShowResult("龙骨识别成功");
 
                     DealResult(1, string.Format("第{0}列下龙骨识别成功", CSTLocation.BottomPhotoCount));
                     if (CSTLocation.BottomPhotoCount == ModelParams.KeelCol)
@@ -183,6 +186,7 @@ namespace Main
                 }
                 else
                 {
+                    g_UCDisplayCamera.ShowResult(string.Format("第{0}列下龙骨识别失败", CSTLocation.BottomPhotoCount),false);
                     return DealResult(2, string.Format("第{0}列下龙骨识别失败", CSTLocation.BottomPhotoCount));
                 }
             }
@@ -200,7 +204,8 @@ namespace Main
             if (!msg.Contains("空跑"))
             {
                 
-                SaveBitmapImage(result == 1, msg);
+                SaveBitmapImage(result == 1);
+                SaveScreenImage(result == 1);
             }
             if (result == 1)
             {

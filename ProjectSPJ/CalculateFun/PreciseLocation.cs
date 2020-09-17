@@ -83,9 +83,9 @@ namespace ProjectSPJ
                     result.AreaRatio < ParModelValue.Inst.ThdAreaMin)
                 {
                     result.Info = string.Format("面积比例{0}超出阈值【{1}，{2}】"
-                                                + result.AreaRatio.ToString("f3")
-                                                + ParModelValue.Inst.ThdAreaMin
-                                                + ParModelValue.Inst.ThdAreaMax);
+                                                , result.AreaRatio.ToString("f3")
+                                                , ParModelValue.Inst.ThdAreaMin
+                                                , ParModelValue.Inst.ThdAreaMax);
                     return false;
                 }
                 return true;

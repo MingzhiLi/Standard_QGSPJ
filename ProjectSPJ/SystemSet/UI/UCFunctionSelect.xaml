@@ -53,7 +53,7 @@
                         <Label Content="精定位相机左右移动拍照:"/>
                         <ControlLib:MTSwitchButton x:Name="MBtnMovePhoto" IsChecked="{Binding IsPreciseMovePhoto}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" IsEnabled="{Binding ElementName=MBtnMovePhoto, Path=IsChecked}" ToolTip="左右移动拍照时检查产品长宽">
+                    <StackPanel Orientation="Horizontal"  ToolTip="左右移动拍照时检查产品长宽">
                         <Label Content="检查产品长宽:"/>
                         <ControlLib:MTSwitchButton IsChecked="{Binding IsCheckLength}" />
                     </StackPanel>
@@ -125,6 +125,7 @@
                 </StackPanel>
             </GroupBox>
         </WrapPanel>
-        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="2" Content="保存" Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
+        <ControlLib:ButtonBase x:Name="BtnSave" Grid.Row="2" Content="保存" 
+                               Background="#FFF7F7F7" BorderBrush="#AA119EDA" Click="BtnSave_Click"/>
     </Grid>
 </UserControl>

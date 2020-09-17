@@ -89,6 +89,7 @@ namespace Main
             try
             {
                 RegeditMain.R_I.PreciseSUM++;
+                ShowState("精定位计数：" + RegeditMain.R_I.PreciseSUM);
                 return true;
             }
             catch (Exception ex)

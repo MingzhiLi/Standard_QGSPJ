@@ -147,6 +147,10 @@ namespace Main
 
         #region adj        
         /// <summary>
+        /// 中片行列数
+        /// </summary>
+        const string key_adj_PickRowCol = "adjPickRowCol";
+        /// <summary>
         /// 面积比阈值
         /// </summary>
         const string key_adj_AreaRatio = "adj7";

@@ -72,6 +72,11 @@
                     <Image Source="/机器视觉控制处理软件;component/Images/手动测试.png" Height="30" ToolTip="手动触发"/>
                     <Label Content="手动触发" FontSize="10"/>
                 </StackPanel>
+                <StackPanel Name="dpPickSet"  Orientation="Vertical" 
+                           MouseEnter="dpPickSet_MouseEnter" MouseLeave="dpPickSet_MouseLeave" MouseLeftButtonDown="dpPickSet_MouseLeftButtonDown">
+                    <Image Source="/机器视觉控制处理软件;component/Images/数据标签设定.jpg" Height="30" ToolTip="标记NG来料"/>
+                    <Label Content="标记NG来料" FontSize="10"/>
+                </StackPanel>
                 <!--<Canvas VerticalAlignment="Stretch" ClipToBounds="True" Margin="5" Width="200">
                     <StackPanel Name="content1">
                         <StackPanel.RenderTransform>
@@ -159,6 +164,22 @@
                         <Popup Name="ppAlarm" StaysOpen="False" Placement="Left">
                             <Grid Background="White">
                                 <DealLog:UCAlarm HorizontalAlignment="Stretch" x:Name="uCAlarm" VerticalAlignment="Stretch"/>
+                            </Grid>
+                        </Popup>
+                    </DockPanel>
+                    <DockPanel Name="dpTempCST" 
+                           MouseEnter="dpTempCST_MouseEnter" MouseLeave="dpTempCST_MouseLeave" MouseLeftButtonDown="dpTempCST_MouseLeftButtonDown" >
+                        <Image x:Name="imTempCST" 
+                           Source="/机器视觉控制处理软件;component/Images/插栏.png" ToolTip="当前卡塞插栏补偿"/>
+                        <Popup Name="ppTempCST" StaysOpen="False" Placement="Left">
+                            <Grid Background="White" Width="200" Height="60">
+                                <GroupBox Header="当前卡塞插栏临时补偿" BorderBrush="Blue" Foreground="Blue" FontSize="15">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label>补偿值：</Label>
+                                        <ControlLib:DoubleUpDown Name="dudTempCST" Width="80" Minimum="-5" Maximum="5" Increment="0.01"
+                                                                 ValueChanged="dudTempCST_ValueChanged" Loaded="dudTempCST_Loaded"/>
+                                    </StackPanel>
+                                </GroupBox>
                             </Grid>
                         </Popup>
                     </DockPanel>

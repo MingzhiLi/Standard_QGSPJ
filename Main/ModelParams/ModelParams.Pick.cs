@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace Main
 {
@@ -68,7 +69,11 @@ namespace Main
         {
             get
             {
-                return _stdPickRows;
+                return _adjPickRows;
+            }
+            set
+            {
+                _adjPickRows = value;
             }
         }
         /// <summary>
@@ -78,7 +83,11 @@ namespace Main
         {
             get
             {
-                return _stdPickCols;
+                return _adjPickCols;
+            }
+            set
+            {
+                _adjPickCols = value;
             }
         }
         #endregion
@@ -135,6 +144,35 @@ namespace Main
             {
                 string key = key_std_PickRowCol;
                 return (int)ParStd.Value2(key);
+            }
+        }
+
+
+        static int _adjPickRows
+        {
+            get
+            {
+                string key = key_adj_PickRowCol;
+                return (int)ParAdjust.Value1(key);
+            }
+            set
+            {
+                string key = key_adj_PickRowCol;
+                ParAdjust.SetValue1(key, value);
+            }
+        }
+
+        static int _adjPickCols
+        {
+            get
+            {
+                string key = key_adj_PickRowCol;
+                return (int)ParAdjust.Value2(key);
+            }
+            set
+            {
+                string key = key_adj_PickRowCol;
+                ParAdjust.SetValue2(key, value);
             }
         }
         #endregion

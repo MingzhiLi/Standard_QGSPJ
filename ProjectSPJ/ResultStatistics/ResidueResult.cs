@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using System.Windows;
 
 namespace ProjectSPJ
 {
@@ -42,10 +43,11 @@ namespace ProjectSPJ
         {
             data = LoadLog<List<ResidueResult>>(new ResidueResult(residueEnum).LogFile);
         }
+
         /// <summary>
         /// 残材1文件存储路径
         /// </summary>
-        public string LogFile => LogPath + this.NameFile + _residueEnum + ".xml";
+        public override string LogFile => LogPath + NameFile + _residueEnum + FormateXML;
 
         /// <summary>
         /// 文件保存名称，如果不重写则会以基类名称来保存
@@ -58,8 +60,7 @@ namespace ProjectSPJ
         /// </summary>
         public void AddToResultList(List<ResidueResult> residueResult_L)
         {
-            string fileName = LogPath + this.NameFile + _residueEnum.ToString() + ".xml";
-            if (File.Exists(fileName))
+            if (File.Exists(LogFile))
             {
                 residueResult_L.Add(this);
             }
@@ -69,7 +70,63 @@ namespace ProjectSPJ
                 residueResult_L.Add(this);
             }
             GetPar();
-            SaveLogToLocal(residueResult_L, fileName);
+            SaveLogToLocal(residueResult_L, LogFile);
+        }
+
+        /// <summary>
+        /// 获取指定小时前的文件
+        /// </summary>
+        /// <param name="hours">指定的小时</param>
+        /// <returns></returns>
+        public override string GetEverLogFile(int hours)
+        {
+            return GetEverLogPath(hours) + NameFile + _residueEnum + FormateXML;
+        }
+
+        /// <summary>
+        /// 获取指定时间的日志文件路径
+        /// </summary>
+        /// <param name="dateTime">指定的时间</param>
+        /// <returns>路径</returns>
+        public override string GetDefineTimeLogFile(DateTime dateTime)
+        {
+            return GetDefineTimePath(dateTime) + NameFile + _residueEnum + FormateXML;
+        }
+        /// <summary>
+        /// 加载指定小时前的日志文件
+        /// </summary>
+        /// <param name="hour">指定的时间</param>
+        /// <param name="data">加载的数据</param>
+        public static void LoadEverFile(int hour,ResidueEnum residueEnum, out List<ResidueResult> data)
+        {
+            string filePath = new ResidueResult(residueEnum).GetEverLogFile(hour);
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("不存在" + DateTime.Now.AddHours(hour).ToString("yyyy年MM月dd日HH点")
+                                + "的残材检测记录！");
+                data = new List<ResidueResult>();
+                return;                       
+            }
+            data = LoadLog<List<ResidueResult>>(filePath);
+        }
+
+        /// <summary>
+        /// 加载指定日期的所有日志
+        /// </summary>
+        /// <param name="dateTime">日期</param>
+        /// <param name="data">加载的日志</param>
+        public static void LoadAllDayFile(ResidueEnum residueEnum, DateTime dateTime, out List<ResidueResult> data)
+        {            
+            data = new List<ResidueResult>();
+            ResidueResult residue = new ResidueResult(residueEnum);
+            for (int i = 0; i < 24; i++)
+            {
+                string path = residue.GetDefineTimeLogFile(dateTime.AddHours(i));
+                if (File.Exists(path))
+                {
+                    data.AddRange(LoadLog<List<ResidueResult>>(path));
+                }
+            }
         }
 
         #endregion 存储相关
@@ -145,7 +202,7 @@ namespace ProjectSPJ
         public string StrResult => BlResult ? OK : NG;
 
         /// <summary>
-        /// 用于相机窗口显示的结果字符串
+        /// 用于相机窗口显示的结果字符串 
         /// </summary>
         public string ResultForShow
         {

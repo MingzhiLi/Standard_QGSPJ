@@ -11,7 +11,7 @@
         <Grid.Resources>
             <Style TargetType="ControlLib:DoubleUpDown">
                 <Setter Property="MinHeight" Value="20"/>
-                <Setter Property="MinWidth" Value="80"/>
+                <Setter Property="Width" Value="80"/>
                 <Setter Property="Minimum" Value="-10"/>
                 <Setter Property="Increment" Value="0.01"/>
             </Style>
@@ -207,7 +207,7 @@
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="长宽检测阈值:" >
-                <StackPanel IsEnabled="{Binding IsMovePhoto}">
+                <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="3">
                         <Label Content="长度偏差阈值:" Width="120"/>
                         <ControlLib:DoubleUpDown Value="{Binding ThdLengthDev, Mode=TwoWay}"/>

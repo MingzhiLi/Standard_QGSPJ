@@ -4,23 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProjectSPJ"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" 
-                  IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
-                <DataGridTextColumn Header="工位号" Binding="{Binding PhotoPos}"/>
-                <DataGridTextColumn Header="TFT清晰度" Binding="{Binding SharpnessTFT}"/>
-                <DataGridTextColumn Header="CF清晰度" Binding="{Binding SharpnessCF}"/>
-                <DataGridTextColumn Header="比例" Binding="{Binding Ratio}"/>
-                <DataGridTextColumn Header="阈值" Binding="{Binding Threshold}"/>
-                <DataGridTextColumn Header="结果" Binding="{Binding StrResult}"/>
-                <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
-                <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="dgResult" CanUserAddRows="False" CanUserDeleteRows="False" 
+                      CanUserSortColumns="False" AutoGenerateColumns="False" IsReadOnly="True"
+                      SelectedCellsChanged="dgResult_SelectedCellsChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="型号名称" Binding="{Binding ModelName}"/>
+                    <DataGridTextColumn Header="工位号" Binding="{Binding PhotoPos}"/>
+                    <DataGridTextColumn Header="TFT清晰度" Binding="{Binding SharpnessTFT}"/>
+                    <DataGridTextColumn Header="CF清晰度" Binding="{Binding SharpnessCF}"/>
+                    <DataGridTextColumn Header="比例" Binding="{Binding Ratio}"/>
+                    <DataGridTextColumn Header="阈值" Binding="{Binding Threshold}"/>
+                    <DataGridTextColumn Header="结果" Binding="{Binding StrResult}"/>
+                    <DataGridTextColumn Header="时间" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="结果信息" Binding="{Binding Info}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <local:UCLogViewer Grid.Row="1" x:Name="ucLogViewer"/>
+        </Grid>
+        <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <local:UCPictureBox x:Name="picturePos1" Margin="2"></local:UCPictureBox>
+            <local:UCPictureBox x:Name="picturePos2" Margin="2" Grid.Row="1"></local:UCPictureBox>
+        </Grid>
     </Grid>
 </UserControl>

@@ -5,20 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSPJ"
         mc:Ignorable="d"
-        Title="结果统计" Height="450" Width="800" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
+        Title="结果统计" Height="450" Width="800" Closed="Window_Closed" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <TabControl>
+            <TabItem Header="生产数据统计">
+                <local:UCProductivityStatistic></local:UCProductivityStatistic>
+            </TabItem>
             <TabItem Header="粗定位结果统计">
                 <local:UCRoughlyResult></local:UCRoughlyResult>
             </TabItem>
             <TabItem Header="精定位结果统计">
                 <local:UCPreciseResult></local:UCPreciseResult>
             </TabItem>
-            <TabItem Header="残材1">
-                <local:UCResidueResult x:Name="ucResidueResult1"/>
+            <TabItem Header="{Binding ElementName=ucResidueResult1, Path=Tag}">
+                <local:UCResidueResult Tag="残材1" x:Name="ucResidueResult1"/>
             </TabItem>
-            <TabItem Header="残材2">
-                <local:UCResidueResult x:Name="ucResidueResult2"/>                
+            <TabItem Header="{Binding ElementName=ucResidueResult2, Path=Tag}">
+                <local:UCResidueResult Tag="残材2" x:Name="ucResidueResult2"/>                
             </TabItem>
             <TabItem Header="单目">
                 <local:UCMonoResult x:Name="ucMonoResult"/>

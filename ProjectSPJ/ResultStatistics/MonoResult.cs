@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using BasicClass;
 using MahApps.Metro.Converters;
 
@@ -17,6 +18,11 @@ namespace ProjectSPJ
     {
         [field: NonSerialized]
         private static List<MonoResult> _monoResult_L = new List<MonoResult>();
+
+        /// <summary>
+        /// 文件保存名称，如果不重写则会以基类名称来保存
+        /// </summary>
+        protected override string NameFile => MethodBase.GetCurrentMethod().DeclaringType.Name;
 
         /// <summary>
         /// 软件启动时使用，加载当前时间的本地日志记录，软件重启时防止重写数据覆盖
@@ -33,16 +39,42 @@ namespace ProjectSPJ
         {
             data = LoadLog<List<MonoResult>>(new MonoResult().LogFile);
         }
-        /// <summary>
-        /// 文件存储路径
-        /// </summary>
-        public string LogFile => LogPath + this.NameFile + ".xml";
 
         /// <summary>
-        /// 文件保存名称，如果不重写则会以基类名称来保存
+        /// 加载指定小时前的日志文件
         /// </summary>
-        protected override string NameFile => MethodBase.GetCurrentMethod().DeclaringType.Name;
+        /// <param name="hour">指定的时间</param>
+        /// <param name="data">加载的数据</param>
+        public static void LoadEverFile(int hour, out List<MonoResult> data)
+        {
+            string filePath = new MonoResult().GetEverLogFile(hour);
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("不存在" + DateTime.Now.AddHours(hour).ToString("yyyy年MM月dd日HH点") + "的单目结果文件！");
+                data = new List<MonoResult>();
+                return;
+            }
+            data = LoadLog<List<MonoResult>>(filePath);
+        }
 
+        /// <summary>
+        /// 加载指定日期的所有日志
+        /// </summary>
+        /// <param name="dateTime">日期</param>
+        /// <param name="data">加载的日志</param>
+        public static void LoadAllDayFile(DateTime dateTime, out List<MonoResult> data)
+        {
+            data = new List<MonoResult>();
+            MonoResult mono = new MonoResult();
+            for (int i = 0; i < 24; i++)
+            {
+                string path = mono.GetDefineTimeLogFile(dateTime.AddHours(i));
+                if (File.Exists(path))
+                {
+                    data.AddRange(LoadLog<List<MonoResult>>(path));
+                }
+            }
+        }
         /// <summary>
         /// 将结果添加到list
         /// </summary>
@@ -60,6 +92,36 @@ namespace ProjectSPJ
             GetPar();
             SaveLogToLocal(_monoResult_L, LogFile);
         }
+
+        #region Data Content
+        public const string Header = "Mark1X," +
+                                     "Mark1Y," +
+                                     "Mark2X," +
+                                     "Mark2Y," +
+                                     "偏差X," +
+                                     "偏差Y," +
+                                     "偏差R," +
+                                     "巡边补偿X," +
+                                     "巡边补偿Y," +
+                                     "巡边补偿R," +
+                                     "二维码偏差X," +
+                                     "二维码偏差Y,";
+        public override string ToString()
+        {
+            return Mark1X.ToString("f3") +
+                   Mark1Y.ToString("f3") +
+                   Mark2X.ToString("f3") +
+                   Mark2X.ToString("f3") +
+                   DeltaX.ToString("f3") +
+                   DeltaY.ToString("f3") +
+                   DeltaR.ToString("f3") +
+                   DeltaInspX.ToString("f3") +
+                   DeltaInspY.ToString("f3") +
+                   DeltaInspR.ToString("f3") +
+                   DeltaQrX.ToString("f3") +
+                   DeltaQrY.ToString("f3");
+        }
+
 
         private double _mark1X = 0;
         /// <summary>
@@ -293,5 +355,6 @@ namespace ProjectSPJ
                 _deltaQrAngleY = value;
             }
         }
+        #endregion Data Content
     }
 }

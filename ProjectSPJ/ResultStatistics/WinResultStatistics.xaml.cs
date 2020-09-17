@@ -22,8 +22,6 @@ namespace ProjectSPJ
         public WinResultStatistics()
         {
             InitializeComponent();
-            ucResidueResult1.dgResult.ItemsSource = ResidueResult.ResidueResult1_L;
-            ucResidueResult2.dgResult.ItemsSource = ResidueResult.ResidueResult2_L;
         }
         private static WinResultStatistics g_WinResult = null;
         public static WinResultStatistics Inst

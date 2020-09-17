@@ -65,5 +65,10 @@ namespace ProjectSPJ
             WinSetDisplayImage winSetDisplayImage = new WinSetDisplayImage();
             winSetDisplayImage.ShowDialog();
         }
+
+        private void BtnCameraWorkSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

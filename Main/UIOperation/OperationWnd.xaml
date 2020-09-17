@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ControlLib="clr-namespace:ControlLib;assembly=ControlLib"
         xmlns:local="clr-namespace:Main"
         mc:Ignorable="d"
         Title="OperationWnd" Height="450" Width="800" BorderThickness="20" WindowStyle="None" AllowsTransparency="True">
@@ -27,9 +28,15 @@
 			</TabItem>
 		</TabControl>
 
-		<Grid Grid.Row="2">
-			<Button x:Name="btnConfirm" Content="确认" Height="40" Width="80" Click="BtnConfirm_Click" Margin="102,0,278,0" />
-			<Button x:Name="btnCancel" Content="取消" Height="40" Width="80" Click="BtnCancel_Click" Margin="275,0,105,0" />
-		</Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Name="spRowCol">
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5" VerticalContentAlignment="Center">来料行数：</Label>
+                <ControlLib:DoubleUpDown Width="100" Height="40" Value="{Binding Row, Mode=TwoWay}"/>
+                <Label Margin="5" VerticalContentAlignment="Center">来料列数：</Label>
+                <ControlLib:DoubleUpDown Width="100" Height="40" Value="{Binding Col, Mode=TwoWay}"/>
+            </StackPanel>
+            <Button x:Name="btnConfirm" Content="确认" Height="40" Width="80" Click="BtnConfirm_Click" Margin="5"/>
+			<Button x:Name="btnCancel" Content="取消" Height="40" Width="80" Click="BtnCancel_Click" Margin="5"/>
+		</StackPanel>
 	</Grid>
 </Window>

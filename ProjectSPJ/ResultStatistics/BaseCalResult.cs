@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProjectSPJ
 {
     /// <summary>
-    /// 精定位计算结果基类
+    /// 计算结果基类
     /// </summary>
     public class BaseCalResult : BaseSerializer, ICloneable
     {
@@ -23,7 +23,11 @@ namespace ProjectSPJ
         /// <summary>
         /// 图片保存路径
         /// </summary>
-        public string ImagePath { get; set; }
+        public List<string> ImagePath { get; set; } = new List<string>();
+        /// <summary>
+        /// 屏幕截图路径
+        /// </summary>
+        public List<string> ScreenImage { get; set; } = new List<string>();
         /// <summary>
         /// 时间
         /// </summary>
@@ -55,6 +59,54 @@ namespace ProjectSPJ
                 return path;
             }
         }
+
+        /// <summary>
+        /// 文件存储路径
+        /// </summary>
+        public virtual string LogFile => LogPath + this.NameFile + FormateXML;
+
+        /// <summary>
+        /// 获取指定小时前的路径
+        /// </summary>
+        /// <param name="hours"></param>
+        /// <returns></returns>
+        public static string GetEverLogPath(int hours)
+        {
+            return BaseLogPath + DateTime.Now.AddHours(hours).ToString("yyyy-MM-dd") + "\\" 
+                               + DateTime.Now.AddHours(hours).ToString("HH") + "\\";
+        }
+
+        /// <summary>
+        /// 获取指定时间的日志路径
+        /// </summary>
+        /// <param name="dateTime">指定的时间</param>
+        /// <returns>文件路径</returns>
+        public static string GetDefineTimePath(DateTime dateTime)
+        {
+            return BaseLogPath + dateTime.ToString("yyyy-MM-dd") + "\\"
+                          + dateTime.ToString("HH") + "\\";
+            
+        }
+
+        /// <summary>
+        /// 获取指定小时前的文件
+        /// </summary>
+        /// <param name="hours">指定的小时</param>
+        /// <returns></returns>
+        public virtual string GetEverLogFile(int hours)
+        {
+            return GetEverLogPath(hours) + NameFile + FormateXML;
+        }
+
+        /// <summary>
+        /// 获取指定时间的文件
+        /// </summary>
+        /// <param name="dateTime">指定的时间</param>
+        /// <returns>文件路径</returns>
+        public virtual string GetDefineTimeLogFile(DateTime dateTime)
+        {
+            return GetDefineTimePath(dateTime) + NameFile + FormateXML;
+        }
         /// <summary>
         /// 读取指定目录的日志文件
         /// </summary>
@@ -73,6 +125,37 @@ namespace ProjectSPJ
         protected static T LoadLog<T>()
         {
             return ReadLocalFile<T>(LogPath);
+        }
+
+        /// <summary>
+        /// 用于combobox日期选择绑定的list
+        /// </summary>
+        public static List<string> DateForBinding_L
+        {
+            get
+            {
+                List<string> date_L = new List<string>();
+                for(int i = 0; i < 30; i++)
+                {
+                    date_L.Add(DateTime.Now.AddDays(-1 * i).ToString("yyyy-MM-dd"));
+                }
+                return date_L;
+            }
+        }
+        /// <summary>
+        /// 用于combobox时间选择的绑定的list
+        /// </summary>
+        public static List<string> HourForBinding_L
+        {
+            get
+            {
+                List<string> hour_L = new List<string>();
+                for (int i = 0; i < 24; i++)
+                {
+                    hour_L.Add(DateTime.Now.AddHours(-1 * i).ToString("HH"));
+                }
+                return hour_L;
+            }
         }
     }
 }

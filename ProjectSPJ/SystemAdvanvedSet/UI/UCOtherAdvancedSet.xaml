@@ -42,6 +42,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+            <ControlLib:ButtonBase Content="相机参数设置"  Name="BtnCameraWorkSet" Click="BtnCameraWorkSet_Click"/>
             <ControlLib:ButtonBase Content="图像显示设置" Name="BtnDisplaySet" Click="BtnDisplaySet_Click"/>
             <ControlLib:ButtonBase Content="系统根目录设置"  Name="BtnSetRootPath" Click="BtnSetRootPath_Click"/>
 

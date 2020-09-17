@@ -32,6 +32,8 @@ namespace Main
             Stopwatch sw = new Stopwatch();
             sw.Restart();
             #endregion 定义
+
+            ResidueResult residueResult = new ResidueResult(ResidueEnum.残材2);
             try
             {
                 Thread.Sleep(PhotoDelay.Inst.DelayResidue2);
@@ -43,7 +45,6 @@ namespace Main
                     g_UCDisplayCamera.ShowResult("残材2PASS");
                     return StateComprehensive_enum.True;
                 }
-                ResidueResult residueResult = new ResidueResult(ResidueEnum.残材2);
                 residueResult.Threshold = ParModelValue.Inst.ThdResidue2;
                 stateComprehensive_e = DealSharpness(CellResultPos1, Pos_enum.Pos1, 
                                                      residueResult,ResidueResult.ResidueResult2_L, 
@@ -62,6 +63,17 @@ namespace Main
 
                 Display(Pos_enum.Pos1, htResult, blResult, sw);
 
+                if (blResult)
+                {
+                    residueResult.ImagePath.Add(SaveBitmapImage(true, "位置1"));
+                    residueResult.ScreenImage.Add(SaveScreenImage(true, "位置1"));
+                }
+                else
+                {
+                    residueResult.ImagePath.Add(SaveBitmapImage(false, "位置1"));
+                    residueResult.ScreenImage.Add(SaveScreenImage(false, "位置1"));
+                }
+                residueResult.AddToResultList(ResidueResult.ResidueResult2_L);
                 #endregion 显示和日志记录 
             }
         }
@@ -77,6 +89,8 @@ namespace Main
             Stopwatch sw = new Stopwatch();
             sw.Restart();
             #endregion 定义
+
+            ResidueResult residueResult = new ResidueResult(ResidueEnum.残材2);
             try
             {
                 Thread.Sleep(PhotoDelay.Inst.DelayResidue2);
@@ -89,7 +103,6 @@ namespace Main
                     return StateComprehensive_enum.True;
                 }
 
-                ResidueResult residueResult = new ResidueResult(ResidueEnum.残材2);
                 residueResult.Threshold = ParModelValue.Inst.ThdResidue2;
                 stateComprehensive_e = DealSharpness(CellResultPos2, Pos_enum.Pos2,
                                                      residueResult, ResidueResult.ResidueResult2_L,
@@ -108,6 +121,17 @@ namespace Main
 
                 Display(Pos_enum.Pos2, htResult, blResult, sw);
 
+                if (blResult)
+                {
+                    residueResult.ImagePath.Add(SaveBitmapImage(true, "位置2"));
+                    residueResult.ScreenImage.Add(SaveScreenImage(true, "位置2"));
+                }
+                else
+                {
+                    residueResult.ImagePath.Add(SaveBitmapImage(false, "位置2"));
+                    residueResult.ScreenImage.Add(SaveScreenImage(false, "位置2"));
+                }
+                residueResult.AddToResultList(ResidueResult.ResidueResult2_L);
                 #endregion 显示和日志记录
             }
         }
